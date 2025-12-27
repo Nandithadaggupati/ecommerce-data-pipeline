@@ -1,0 +1,14 @@
+pandas==2.2.2
+# Allow pip to pick a version compatible with your Python and Airflow later
+SQLAlchemy>=1.4,<2.1
+psycopg2-binary==2.9.9
+faker==33.0.0
+python-dotenv==1.0.1
+PyYAML==6.0.2
+pytest==8.3.3
+
+# Orchestration (Airflow will be handled via Docker image later, not local venv)
+# apache-airflow==2.10.3
+
+# Optional, for logging/monitoring helpers later
+rich==13.9.4
