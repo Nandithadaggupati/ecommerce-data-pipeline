@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pytest_cache/
+.venv/
+venv/
+
+# VS Code / IDE
+.vscode/
+.idea/
+
+# Environment
+.env
+.env.*
+*.env
+
+# Data
+data/raw/*
+data/staging/*
+data/processed/*
+!data/raw/.gitkeep
+!data/staging/.gitkeep
+!data/processed/.gitkeep
+
+# Logs
+logs/*
+!logs/.gitkeep
+
+# Reports / artifacts
+dashboards/**/*.twb
+dashboards/**/*.twbx
+dashboards/**/*.pbix
+dashboards/screenshots/*
+
+# Docker
+docker/postgres_data/
+
+# OS files
+.DS_Store
+Thumbs.db
