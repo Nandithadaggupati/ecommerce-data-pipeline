@@ -1,0 +1,501 @@
+product_id,product_name,category,sub_category,price,cost,brand,stock_quantity,supplier_id
+PROD000001,Sports Product 1,Sports,General,324.47,199.61,"Rose, Bradley and Riley",598,SUP0026
+PROD000002,Beauty Product 2,Beauty,General,143.21,70.02,Fuller-Sanchez,230,SUP0012
+PROD000003,Electronics Product 3,Electronics,General,447.83,273.72,"Fitzgerald, Richards and Douglas",416,SUP0001
+PROD000004,Clothing Product 4,Clothing,General,277.59,156.95,Miller PLC,515,SUP0033
+PROD000005,Clothing Product 5,Clothing,General,357.04,158.56,Miller-Burke,555,SUP0017
+PROD000006,Books Product 6,Books,General,321.08,229.05,Hines-Dominguez,423,SUP0007
+PROD000007,Beauty Product 7,Beauty,General,459.54,247.24,Ray Group,422,SUP0015
+PROD000008,Books Product 8,Books,General,488.8,246.59,Dean-Gross,389,SUP0022
+PROD000009,Sports Product 9,Sports,General,111.77,67.26,"Pitts, Smith and Mcdowell",538,SUP0045
+PROD000010,Sports Product 10,Sports,General,241.81,173.51,Leon-Boyd,998,SUP0009
+PROD000011,Electronics Product 11,Electronics,General,301.11,206.18,"Morgan, Lewis and Snyder",607,SUP0015
+PROD000012,Beauty Product 12,Beauty,General,284.01,191.0,Frank LLC,202,SUP0034
+PROD000013,Sports Product 13,Sports,General,52.5,29.25,"Mcintyre, Alexander and Jones",765,SUP0015
+PROD000014,Home & Kitchen Product 14,Home & Kitchen,General,188.28,105.38,"Davis, Garza and Branch",982,SUP0006
+PROD000015,Electronics Product 15,Electronics,General,283.76,183.05,Holland-Schroeder,787,SUP0036
+PROD000016,Sports Product 16,Sports,General,405.91,309.02,Watson Ltd,876,SUP0007
+PROD000017,Clothing Product 17,Clothing,General,421.94,194.3,Gutierrez-Hunter,242,SUP0049
+PROD000018,Electronics Product 18,Electronics,General,408.22,240.29,"Carroll, Macias and Smith",860,SUP0030
+PROD000019,Home & Kitchen Product 19,Home & Kitchen,General,427.65,325.35,"Leonard, Bailey and Ortiz",799,SUP0038
+PROD000020,Beauty Product 20,Beauty,General,111.01,52.5,Ponce Inc,56,SUP0028
+PROD000021,Home & Kitchen Product 21,Home & Kitchen,General,361.99,259.55,"Taylor, Mann and Moody",162,SUP0017
+PROD000022,Beauty Product 22,Beauty,General,260.82,177.27,"Singleton, Ramos and Nelson",403,SUP0038
+PROD000023,Electronics Product 23,Electronics,General,91.23,40.89,"Arnold, Solomon and Snyder",256,SUP0015
+PROD000024,Home & Kitchen Product 24,Home & Kitchen,General,171.82,108.38,Walters LLC,864,SUP0012
+PROD000025,Beauty Product 25,Beauty,General,190.03,92.2,"Pierce, Horn and Huang",726,SUP0004
+PROD000026,Sports Product 26,Sports,General,168.55,105.37,Hopkins-Kelly,891,SUP0035
+PROD000027,Home & Kitchen Product 27,Home & Kitchen,General,363.13,255.36,Flores-Mullins,102,SUP0025
+PROD000028,Home & Kitchen Product 28,Home & Kitchen,General,432.42,316.44,Mcintosh-Johnson,92,SUP0016
+PROD000029,Sports Product 29,Sports,General,378.78,289.75,Woodard-Mckinney,125,SUP0032
+PROD000030,Clothing Product 30,Clothing,General,63.83,33.38,"Harvey, Miller and Johnson",786,SUP0009
+PROD000031,Home & Kitchen Product 31,Home & Kitchen,General,473.04,229.41,Rubio Ltd,280,SUP0026
+PROD000032,Sports Product 32,Sports,General,66.96,37.17,Barry Inc,205,SUP0020
+PROD000033,Books Product 33,Books,General,361.7,247.53,Roberson Ltd,422,SUP0040
+PROD000034,Home & Kitchen Product 34,Home & Kitchen,General,288.88,133.31,Munoz Inc,426,SUP0022
+PROD000035,Electronics Product 35,Electronics,General,54.75,23.35,Bright-Odom,412,SUP0016
+PROD000036,Electronics Product 36,Electronics,General,342.43,225.8,"Smith, Hinton and Jones",277,SUP0029
+PROD000037,Clothing Product 37,Clothing,General,439.42,311.77,"Chen, Kelly and Bray",96,SUP0018
+PROD000038,Books Product 38,Books,General,142.49,112.26,"Adams, Turner and Taylor",259,SUP0007
+PROD000039,Home & Kitchen Product 39,Home & Kitchen,General,183.71,141.13,Rogers and Sons,230,SUP0025
+PROD000040,Clothing Product 40,Clothing,General,350.58,194.8,Payne-Banks,900,SUP0033
+PROD000041,Beauty Product 41,Beauty,General,483.62,361.22,Baker-Hensley,764,SUP0009
+PROD000042,Beauty Product 42,Beauty,General,132.75,96.04,Glover Group,428,SUP0021
+PROD000043,Electronics Product 43,Electronics,General,77.28,34.17,"Thompson, Harris and Rodriguez",671,SUP0003
+PROD000044,Books Product 44,Books,General,236.14,180.75,"Banks, Rush and Pierce",596,SUP0025
+PROD000045,Home & Kitchen Product 45,Home & Kitchen,General,436.81,205.72,Ramirez-French,178,SUP0022
+PROD000046,Books Product 46,Books,General,50.08,36.66,Norris-Sims,839,SUP0009
+PROD000047,Sports Product 47,Sports,General,19.24,8.28,Brown PLC,549,SUP0007
+PROD000048,Home & Kitchen Product 48,Home & Kitchen,General,461.59,366.42,"Riley, Wilson and Bryan",22,SUP0038
+PROD000049,Electronics Product 49,Electronics,General,291.34,163.81,Morris-Cannon,728,SUP0023
+PROD000050,Sports Product 50,Sports,General,85.22,54.74,Stevenson-Carter,239,SUP0007
+PROD000051,Sports Product 51,Sports,General,119.75,77.2,Miller PLC,539,SUP0047
+PROD000052,Home & Kitchen Product 52,Home & Kitchen,General,48.32,32.96,White PLC,652,SUP0006
+PROD000053,Electronics Product 53,Electronics,General,395.44,192.82,Williams Group,3,SUP0029
+PROD000054,Books Product 54,Books,General,384.15,178.29,"Wilson, Ellis and Hooper",1000,SUP0042
+PROD000055,Home & Kitchen Product 55,Home & Kitchen,General,28.45,13.45,Snyder-Davidson,180,SUP0049
+PROD000056,Clothing Product 56,Clothing,General,66.0,39.83,Robinson Inc,997,SUP0029
+PROD000057,Home & Kitchen Product 57,Home & Kitchen,General,470.77,228.89,Jones Ltd,944,SUP0040
+PROD000058,Electronics Product 58,Electronics,General,258.02,143.82,Guzman Inc,697,SUP0046
+PROD000059,Home & Kitchen Product 59,Home & Kitchen,General,96.09,56.72,Miller-Moss,585,SUP0035
+PROD000060,Books Product 60,Books,General,103.07,69.66,Lara-Harrison,733,SUP0027
+PROD000061,Home & Kitchen Product 61,Home & Kitchen,General,56.44,25.36,"Hardin, Cook and Mcdaniel",673,SUP0019
+PROD000062,Electronics Product 62,Electronics,General,249.33,150.17,Martinez-Williams,84,SUP0016
+PROD000063,Clothing Product 63,Clothing,General,26.27,14.96,"Cuevas, Patrick and Rosario",303,SUP0038
+PROD000064,Electronics Product 64,Electronics,General,146.49,86.59,"Berry, Smith and Hale",540,SUP0024
+PROD000065,Home & Kitchen Product 65,Home & Kitchen,General,398.17,255.92,"Wood, Hahn and Parsons",490,SUP0004
+PROD000066,Books Product 66,Books,General,202.11,135.07,James-Knight,14,SUP0022
+PROD000067,Sports Product 67,Sports,General,419.92,184.76,Jones LLC,330,SUP0009
+PROD000068,Sports Product 68,Sports,General,157.67,97.26,"Juarez, Baker and Sanchez",368,SUP0013
+PROD000069,Home & Kitchen Product 69,Home & Kitchen,General,262.58,163.98,French LLC,808,SUP0046
+PROD000070,Electronics Product 70,Electronics,General,98.96,46.65,"Turner, Boone and Moore",91,SUP0005
+PROD000071,Home & Kitchen Product 71,Home & Kitchen,General,202.68,157.71,Martinez-Benitez,35,SUP0005
+PROD000072,Electronics Product 72,Electronics,General,26.63,21.0,Daniels-Thornton,705,SUP0039
+PROD000073,Electronics Product 73,Electronics,General,168.98,72.89,"Davenport, Holland and Ford",77,SUP0043
+PROD000074,Books Product 74,Books,General,470.25,344.86,"Williams, Gomez and Hammond",201,SUP0018
+PROD000075,Beauty Product 75,Beauty,General,223.58,143.7,Tucker and Sons,624,SUP0011
+PROD000076,Beauty Product 76,Beauty,General,228.53,110.81,"Booth, Torres and Liu",274,SUP0044
+PROD000077,Home & Kitchen Product 77,Home & Kitchen,General,265.17,209.74,"Smith, Smith and Robles",352,SUP0004
+PROD000078,Sports Product 78,Sports,General,152.52,77.23,"Hayes, Martinez and Boyer",645,SUP0016
+PROD000079,Beauty Product 79,Beauty,General,354.15,208.47,Conrad LLC,93,SUP0001
+PROD000080,Sports Product 80,Sports,General,81.82,46.15,Barnes-Wright,490,SUP0007
+PROD000081,Beauty Product 81,Beauty,General,294.92,208.04,Russell-Macdonald,317,SUP0039
+PROD000082,Beauty Product 82,Beauty,General,98.58,46.27,Brown-Rivera,262,SUP0037
+PROD000083,Beauty Product 83,Beauty,General,124.75,89.02,"Patrick, Lynch and Black",530,SUP0006
+PROD000084,Electronics Product 84,Electronics,General,333.19,233.45,Richard-Simpson,109,SUP0041
+PROD000085,Home & Kitchen Product 85,Home & Kitchen,General,478.07,381.4,"Mcneil, Potts and Goodwin",855,SUP0027
+PROD000086,Books Product 86,Books,General,16.07,7.57,"Morton, Taylor and Gardner",311,SUP0021
+PROD000087,Sports Product 87,Sports,General,448.75,339.73,Brown-Casey,581,SUP0033
+PROD000088,Sports Product 88,Sports,General,389.62,181.71,"Powell, Molina and Henry",957,SUP0022
+PROD000089,Books Product 89,Books,General,331.46,222.82,Marks-Martinez,687,SUP0023
+PROD000090,Sports Product 90,Sports,General,341.98,254.83,Vaughn and Sons,29,SUP0034
+PROD000091,Sports Product 91,Sports,General,185.07,109.79,Blackwell-Robinson,811,SUP0034
+PROD000092,Books Product 92,Books,General,267.49,120.16,Freeman and Sons,683,SUP0039
+PROD000093,Home & Kitchen Product 93,Home & Kitchen,General,140.77,72.17,"Nelson, Hicks and Chung",958,SUP0046
+PROD000094,Electronics Product 94,Electronics,General,120.42,74.23,"Watson, Hanson and Watkins",932,SUP0032
+PROD000095,Sports Product 95,Sports,General,267.01,125.91,Kent-White,81,SUP0021
+PROD000096,Books Product 96,Books,General,289.64,117.41,Odom-Lopez,670,SUP0003
+PROD000097,Books Product 97,Books,General,20.27,9.62,Smith and Sons,581,SUP0013
+PROD000098,Electronics Product 98,Electronics,General,42.15,26.02,James-Munoz,878,SUP0025
+PROD000099,Sports Product 99,Sports,General,401.43,291.22,Garcia PLC,50,SUP0018
+PROD000100,Electronics Product 100,Electronics,General,491.12,266.9,Rhodes LLC,431,SUP0014
+PROD000101,Home & Kitchen Product 101,Home & Kitchen,General,439.06,204.52,"Cervantes, Olson and Stevens",503,SUP0048
+PROD000102,Electronics Product 102,Electronics,General,131.83,103.16,"Perkins, Sullivan and Brown",617,SUP0005
+PROD000103,Sports Product 103,Sports,General,186.08,101.74,Martin-Barrera,565,SUP0025
+PROD000104,Sports Product 104,Sports,General,433.95,230.87,Taylor Group,59,SUP0019
+PROD000105,Clothing Product 105,Clothing,General,387.6,260.59,Meyer PLC,182,SUP0025
+PROD000106,Electronics Product 106,Electronics,General,313.02,231.39,Mcclain-Boyd,898,SUP0018
+PROD000107,Beauty Product 107,Beauty,General,207.7,145.53,Lewis and Sons,961,SUP0026
+PROD000108,Electronics Product 108,Electronics,General,135.99,75.78,Estrada Group,792,SUP0008
+PROD000109,Books Product 109,Books,General,140.59,102.86,"Lane, Key and Diaz",954,SUP0048
+PROD000110,Clothing Product 110,Clothing,General,166.96,84.89,Grant-Nicholson,506,SUP0026
+PROD000111,Beauty Product 111,Beauty,General,54.98,33.86,"Martin, Hines and Rodriguez",322,SUP0049
+PROD000112,Sports Product 112,Sports,General,134.57,105.01,"Torres, Reynolds and Gutierrez",106,SUP0024
+PROD000113,Beauty Product 113,Beauty,General,452.78,278.86,"Rivera, Wang and Peterson",407,SUP0012
+PROD000114,Beauty Product 114,Beauty,General,194.73,115.74,"Walker, Rodriguez and Bond",257,SUP0021
+PROD000115,Sports Product 115,Sports,General,265.12,199.49,"Smith, Garcia and English",54,SUP0027
+PROD000116,Books Product 116,Books,General,423.33,176.27,Kim-Banks,360,SUP0032
+PROD000117,Electronics Product 117,Electronics,General,254.76,171.44,Chase-Matthews,710,SUP0027
+PROD000118,Beauty Product 118,Beauty,General,285.59,179.14,"Edwards, Cisneros and Burnett",801,SUP0048
+PROD000119,Clothing Product 119,Clothing,General,76.36,52.42,Thompson-Austin,744,SUP0042
+PROD000120,Electronics Product 120,Electronics,General,430.84,326.05,"Livingston, Rhodes and Lopez",383,SUP0015
+PROD000121,Sports Product 121,Sports,General,136.71,92.62,Turner-Lopez,928,SUP0048
+PROD000122,Clothing Product 122,Clothing,General,390.34,227.78,"Turner, Mitchell and Hall",519,SUP0032
+PROD000123,Books Product 123,Books,General,370.48,216.49,Davis PLC,418,SUP0040
+PROD000124,Sports Product 124,Sports,General,285.17,202.82,Hartman PLC,259,SUP0050
+PROD000125,Beauty Product 125,Beauty,General,399.29,162.43,Green-Johnston,648,SUP0001
+PROD000126,Sports Product 126,Sports,General,228.41,99.67,"Johnson, Rogers and Martinez",936,SUP0042
+PROD000127,Home & Kitchen Product 127,Home & Kitchen,General,275.28,138.17,"Powers, Thomas and Gray",157,SUP0034
+PROD000128,Clothing Product 128,Clothing,General,241.13,144.7,"Brown, Carpenter and Martin",383,SUP0048
+PROD000129,Sports Product 129,Sports,General,314.55,161.26,"Stewart, Chen and James",417,SUP0047
+PROD000130,Electronics Product 130,Electronics,General,421.4,197.07,"Bradley, Walton and Garcia",992,SUP0050
+PROD000131,Home & Kitchen Product 131,Home & Kitchen,General,443.09,322.51,Salinas-Martinez,960,SUP0029
+PROD000132,Beauty Product 132,Beauty,General,389.84,184.46,Edwards and Sons,296,SUP0019
+PROD000133,Electronics Product 133,Electronics,General,346.89,251.3,Cook and Sons,706,SUP0008
+PROD000134,Beauty Product 134,Beauty,General,248.25,125.99,Lee-Barker,27,SUP0019
+PROD000135,Beauty Product 135,Beauty,General,496.96,354.65,"Morales, Cunningham and Curtis",449,SUP0049
+PROD000136,Beauty Product 136,Beauty,General,31.36,23.68,Berg-Perez,416,SUP0032
+PROD000137,Sports Product 137,Sports,General,31.21,18.86,Sexton-Taylor,820,SUP0001
+PROD000138,Sports Product 138,Sports,General,26.59,15.55,Patterson-Jones,532,SUP0020
+PROD000139,Sports Product 139,Sports,General,110.47,71.5,Wagner-Martin,356,SUP0012
+PROD000140,Electronics Product 140,Electronics,General,481.01,314.46,Johnson Ltd,962,SUP0050
+PROD000141,Sports Product 141,Sports,General,257.94,139.59,Benton Ltd,180,SUP0003
+PROD000142,Electronics Product 142,Electronics,General,96.52,41.22,Nunez-Rose,182,SUP0044
+PROD000143,Home & Kitchen Product 143,Home & Kitchen,General,366.8,252.48,Banks-Smith,656,SUP0003
+PROD000144,Beauty Product 144,Beauty,General,252.28,137.42,Caldwell Ltd,520,SUP0004
+PROD000145,Sports Product 145,Sports,General,332.68,172.01,Villarreal-Warren,131,SUP0017
+PROD000146,Beauty Product 146,Beauty,General,249.11,147.69,Booth-Davis,373,SUP0017
+PROD000147,Clothing Product 147,Clothing,General,479.41,365.08,Frank-Miller,290,SUP0046
+PROD000148,Sports Product 148,Sports,General,93.91,71.75,Solomon Ltd,654,SUP0014
+PROD000149,Beauty Product 149,Beauty,General,259.63,193.32,Wilson-Perry,566,SUP0047
+PROD000150,Books Product 150,Books,General,234.32,95.06,Navarro-White,43,SUP0023
+PROD000151,Sports Product 151,Sports,General,476.96,300.72,"Cooper, Welch and Williamson",534,SUP0003
+PROD000152,Beauty Product 152,Beauty,General,150.56,71.08,Spencer-Brown,665,SUP0044
+PROD000153,Sports Product 153,Sports,General,295.8,132.56,Anderson Inc,57,SUP0045
+PROD000154,Clothing Product 154,Clothing,General,190.58,85.35,Moore-Parker,242,SUP0036
+PROD000155,Clothing Product 155,Clothing,General,84.72,52.72,Lopez-White,641,SUP0010
+PROD000156,Beauty Product 156,Beauty,General,207.17,127.37,Anderson-Taylor,945,SUP0032
+PROD000157,Home & Kitchen Product 157,Home & Kitchen,General,322.89,214.0,Long-Bird,405,SUP0046
+PROD000158,Beauty Product 158,Beauty,General,212.21,153.26,Cervantes PLC,530,SUP0034
+PROD000159,Clothing Product 159,Clothing,General,272.08,176.15,Gallegos-Hamilton,658,SUP0030
+PROD000160,Sports Product 160,Sports,General,478.51,277.02,Downs PLC,626,SUP0044
+PROD000161,Sports Product 161,Sports,General,57.62,36.62,Strong LLC,76,SUP0034
+PROD000162,Home & Kitchen Product 162,Home & Kitchen,General,106.99,81.08,Sutton and Sons,707,SUP0007
+PROD000163,Sports Product 163,Sports,General,130.56,100.58,Johnson LLC,881,SUP0002
+PROD000164,Home & Kitchen Product 164,Home & Kitchen,General,363.03,184.65,Lawrence-Reeves,956,SUP0028
+PROD000165,Sports Product 165,Sports,General,347.58,239.91,Reynolds and Sons,567,SUP0017
+PROD000166,Clothing Product 166,Clothing,General,278.65,121.82,Sosa-Mullen,665,SUP0043
+PROD000167,Electronics Product 167,Electronics,General,263.29,205.01,"Edwards, Gonzales and Olson",796,SUP0014
+PROD000168,Beauty Product 168,Beauty,General,360.06,252.19,"Howell, Davis and Barnes",969,SUP0011
+PROD000169,Beauty Product 169,Beauty,General,215.25,91.03,Fox Group,78,SUP0039
+PROD000170,Sports Product 170,Sports,General,202.46,121.22,Jones Inc,352,SUP0007
+PROD000171,Electronics Product 171,Electronics,General,452.13,353.51,"Santos, Curtis and Macdonald",857,SUP0035
+PROD000172,Sports Product 172,Sports,General,73.74,46.7,Gonzalez-Moore,343,SUP0050
+PROD000173,Electronics Product 173,Electronics,General,62.46,34.56,"Smith, Page and Mills",804,SUP0016
+PROD000174,Books Product 174,Books,General,441.38,329.83,Robinson PLC,199,SUP0044
+PROD000175,Home & Kitchen Product 175,Home & Kitchen,General,428.27,282.64,"Mccormick, Payne and Cruz",252,SUP0006
+PROD000176,Beauty Product 176,Beauty,General,383.28,227.67,Jones-Austin,215,SUP0036
+PROD000177,Sports Product 177,Sports,General,170.34,111.61,Butler Group,116,SUP0043
+PROD000178,Clothing Product 178,Clothing,General,169.33,73.76,"Stokes, Grant and Petty",413,SUP0039
+PROD000179,Sports Product 179,Sports,General,273.95,206.02,Glenn and Sons,3,SUP0041
+PROD000180,Clothing Product 180,Clothing,General,230.91,145.26,Fisher-Nolan,542,SUP0028
+PROD000181,Books Product 181,Books,General,81.76,45.16,Cook Group,147,SUP0013
+PROD000182,Beauty Product 182,Beauty,General,369.56,237.81,Dyer-Phillips,476,SUP0038
+PROD000183,Clothing Product 183,Clothing,General,392.89,202.02,"Carlson, Day and Espinoza",465,SUP0021
+PROD000184,Sports Product 184,Sports,General,456.73,355.76,Miller Inc,39,SUP0046
+PROD000185,Beauty Product 185,Beauty,General,321.33,219.36,Huang and Sons,414,SUP0030
+PROD000186,Sports Product 186,Sports,General,474.75,378.55,Paul Ltd,868,SUP0027
+PROD000187,Beauty Product 187,Beauty,General,367.46,268.09,Cabrera-Campbell,487,SUP0010
+PROD000188,Books Product 188,Books,General,267.94,176.03,Lewis-Reynolds,731,SUP0031
+PROD000189,Books Product 189,Books,General,206.92,92.06,"Miller, Ellis and Rice",452,SUP0031
+PROD000190,Clothing Product 190,Clothing,General,177.97,123.12,Young and Sons,350,SUP0035
+PROD000191,Home & Kitchen Product 191,Home & Kitchen,General,136.19,99.93,Hicks-David,717,SUP0048
+PROD000192,Electronics Product 192,Electronics,General,255.14,133.61,Evans-Turner,294,SUP0009
+PROD000193,Sports Product 193,Sports,General,405.11,189.93,Vance and Sons,783,SUP0013
+PROD000194,Beauty Product 194,Beauty,General,475.22,322.41,"James, Welch and Donovan",25,SUP0001
+PROD000195,Books Product 195,Books,General,24.77,16.4,Hall-Monroe,705,SUP0017
+PROD000196,Beauty Product 196,Beauty,General,459.63,322.08,"Lester, Hanna and Guerra",172,SUP0026
+PROD000197,Beauty Product 197,Beauty,General,199.73,96.78,Schneider-Johnson,412,SUP0002
+PROD000198,Clothing Product 198,Clothing,General,474.96,324.57,Hahn-Orr,898,SUP0047
+PROD000199,Home & Kitchen Product 199,Home & Kitchen,General,495.54,378.08,Moran and Sons,780,SUP0010
+PROD000200,Clothing Product 200,Clothing,General,75.88,32.55,Mcneil and Sons,199,SUP0002
+PROD000201,Clothing Product 201,Clothing,General,34.66,15.46,"Atkinson, Jackson and Tran",986,SUP0021
+PROD000202,Sports Product 202,Sports,General,163.73,73.56,"Lee, Miller and Chapman",665,SUP0026
+PROD000203,Home & Kitchen Product 203,Home & Kitchen,General,257.58,158.63,Green-Lucero,61,SUP0012
+PROD000204,Clothing Product 204,Clothing,General,72.7,40.03,Johnson Group,898,SUP0006
+PROD000205,Beauty Product 205,Beauty,General,491.57,315.82,"George, Parker and Matthews",278,SUP0050
+PROD000206,Sports Product 206,Sports,General,408.14,290.04,Hill-Myers,654,SUP0035
+PROD000207,Clothing Product 207,Clothing,General,477.49,225.54,Bell-Stafford,630,SUP0032
+PROD000208,Books Product 208,Books,General,411.22,227.25,"Dominguez, Mejia and Montes",941,SUP0020
+PROD000209,Electronics Product 209,Electronics,General,241.32,162.86,"Evans, Sutton and Adams",402,SUP0022
+PROD000210,Clothing Product 210,Clothing,General,403.22,286.92,Ortiz Group,185,SUP0003
+PROD000211,Clothing Product 211,Clothing,General,138.5,81.14,Ballard-Cantrell,159,SUP0028
+PROD000212,Books Product 212,Books,General,200.97,103.88,Green Ltd,284,SUP0019
+PROD000213,Home & Kitchen Product 213,Home & Kitchen,General,16.82,6.79,Estrada Inc,388,SUP0032
+PROD000214,Electronics Product 214,Electronics,General,165.01,71.32,Sharp-Sutton,26,SUP0050
+PROD000215,Electronics Product 215,Electronics,General,317.47,179.36,Lester Inc,571,SUP0049
+PROD000216,Home & Kitchen Product 216,Home & Kitchen,General,371.96,276.97,"Sanders, Sullivan and Williams",928,SUP0008
+PROD000217,Books Product 217,Books,General,140.27,89.14,Adams-Wilson,890,SUP0024
+PROD000218,Electronics Product 218,Electronics,General,261.59,185.31,"Logan, Jacobson and Chambers",683,SUP0029
+PROD000219,Sports Product 219,Sports,General,147.86,76.23,Wong and Sons,518,SUP0048
+PROD000220,Beauty Product 220,Beauty,General,438.69,187.24,"Jones, Patterson and Morgan",450,SUP0018
+PROD000221,Home & Kitchen Product 221,Home & Kitchen,General,24.26,16.15,Little-Bradley,567,SUP0038
+PROD000222,Home & Kitchen Product 222,Home & Kitchen,General,330.59,133.86,"Davis, Hines and Johnson",994,SUP0025
+PROD000223,Sports Product 223,Sports,General,255.04,169.83,"Torres, Young and Haas",828,SUP0017
+PROD000224,Beauty Product 224,Beauty,General,75.62,33.91,"Young, Estrada and Ball",736,SUP0037
+PROD000225,Clothing Product 225,Clothing,General,53.41,38.07,Baker-Hernandez,783,SUP0047
+PROD000226,Home & Kitchen Product 226,Home & Kitchen,General,360.13,247.29,"Cantu, Williams and Hernandez",848,SUP0048
+PROD000227,Clothing Product 227,Clothing,General,326.25,135.28,"Carrillo, Alexander and Mills",256,SUP0007
+PROD000228,Sports Product 228,Sports,General,92.83,70.92,Lee-Bell,936,SUP0024
+PROD000229,Books Product 229,Books,General,298.01,227.75,"Shah, Hughes and Schultz",573,SUP0034
+PROD000230,Home & Kitchen Product 230,Home & Kitchen,General,188.66,121.92,Jones-Chung,543,SUP0039
+PROD000231,Home & Kitchen Product 231,Home & Kitchen,General,426.88,305.42,Blake-Stout,663,SUP0013
+PROD000232,Clothing Product 232,Clothing,General,189.35,81.29,Nelson and Sons,133,SUP0040
+PROD000233,Home & Kitchen Product 233,Home & Kitchen,General,459.9,211.33,"Johnson, Johnson and Franklin",102,SUP0040
+PROD000234,Home & Kitchen Product 234,Home & Kitchen,General,117.19,50.24,Neal Ltd,741,SUP0043
+PROD000235,Books Product 235,Books,General,423.23,325.83,Hopkins-Pugh,124,SUP0015
+PROD000236,Sports Product 236,Sports,General,170.17,76.84,Gordon-Jones,291,SUP0020
+PROD000237,Sports Product 237,Sports,General,299.71,206.92,"Howard, Ross and Henry",829,SUP0032
+PROD000238,Electronics Product 238,Electronics,General,138.82,86.89,"Barnett, Hall and Massey",538,SUP0024
+PROD000239,Sports Product 239,Sports,General,250.17,151.09,Olson-Vincent,496,SUP0019
+PROD000240,Home & Kitchen Product 240,Home & Kitchen,General,318.94,252.69,"Saunders, Miller and Coleman",716,SUP0015
+PROD000241,Home & Kitchen Product 241,Home & Kitchen,General,55.96,37.62,Daniels-Bates,713,SUP0016
+PROD000242,Sports Product 242,Sports,General,473.22,299.38,"Miller, Liu and Duncan",392,SUP0039
+PROD000243,Sports Product 243,Sports,General,255.05,196.86,Bailey LLC,330,SUP0005
+PROD000244,Electronics Product 244,Electronics,General,12.7,9.13,"Contreras, Harris and Morris",181,SUP0003
+PROD000245,Sports Product 245,Sports,General,354.89,186.37,Estes Ltd,763,SUP0033
+PROD000246,Home & Kitchen Product 246,Home & Kitchen,General,213.17,135.2,Carpenter-Vincent,494,SUP0048
+PROD000247,Electronics Product 247,Electronics,General,152.44,68.45,Alvarez LLC,497,SUP0009
+PROD000248,Clothing Product 248,Clothing,General,498.19,310.1,"Barnes, Sanchez and Miles",532,SUP0024
+PROD000249,Books Product 249,Books,General,287.69,202.24,Mayer-Lopez,212,SUP0032
+PROD000250,Clothing Product 250,Clothing,General,264.89,143.39,Anderson-Thompson,910,SUP0007
+PROD000251,Beauty Product 251,Beauty,General,91.4,52.3,"West, Goodman and Gordon",349,SUP0013
+PROD000252,Clothing Product 252,Clothing,General,385.35,284.22,Watts-Barry,406,SUP0018
+PROD000253,Sports Product 253,Sports,General,429.17,236.88,Page Group,27,SUP0019
+PROD000254,Beauty Product 254,Beauty,General,27.36,18.37,Castro-Oconnor,789,SUP0009
+PROD000255,Electronics Product 255,Electronics,General,279.57,212.2,Walters-Brown,611,SUP0030
+PROD000256,Beauty Product 256,Beauty,General,95.38,54.59,Nelson-Jackson,331,SUP0024
+PROD000257,Home & Kitchen Product 257,Home & Kitchen,General,70.26,30.21,Ortiz and Sons,452,SUP0046
+PROD000258,Clothing Product 258,Clothing,General,397.63,289.42,Booth LLC,220,SUP0034
+PROD000259,Beauty Product 259,Beauty,General,472.37,189.15,"Hernandez, Gilbert and Lynn",327,SUP0034
+PROD000260,Books Product 260,Books,General,186.12,137.07,"Salinas, Fuller and Cowan",805,SUP0032
+PROD000261,Beauty Product 261,Beauty,General,272.51,194.96,Baker-Stein,672,SUP0028
+PROD000262,Clothing Product 262,Clothing,General,194.9,131.28,Hart-Fowler,551,SUP0040
+PROD000263,Clothing Product 263,Clothing,General,339.52,239.02,"Brown, Hicks and Moore",615,SUP0031
+PROD000264,Electronics Product 264,Electronics,General,150.84,116.81,Brown-Robertson,259,SUP0001
+PROD000265,Books Product 265,Books,General,425.94,272.69,"Jimenez, Johnson and Morris",625,SUP0007
+PROD000266,Books Product 266,Books,General,96.96,61.22,Gonzales-Owens,915,SUP0014
+PROD000267,Sports Product 267,Sports,General,337.2,136.59,Peters-Rodgers,850,SUP0027
+PROD000268,Books Product 268,Books,General,108.14,85.05,Floyd Group,449,SUP0033
+PROD000269,Books Product 269,Books,General,83.16,44.52,"Browning, Copeland and Lee",437,SUP0038
+PROD000270,Home & Kitchen Product 270,Home & Kitchen,General,155.25,76.67,Evans LLC,668,SUP0005
+PROD000271,Beauty Product 271,Beauty,General,169.3,106.01,"Ruiz, Martin and Skinner",983,SUP0008
+PROD000272,Clothing Product 272,Clothing,General,389.92,268.14,Paul-Hill,166,SUP0037
+PROD000273,Home & Kitchen Product 273,Home & Kitchen,General,407.28,273.87,Zamora PLC,910,SUP0042
+PROD000274,Sports Product 274,Sports,General,474.83,258.96,"Cantu, Howard and Carrillo",203,SUP0002
+PROD000275,Books Product 275,Books,General,131.29,55.46,Perkins-Williams,591,SUP0017
+PROD000276,Sports Product 276,Sports,General,239.29,145.19,Ortiz Inc,671,SUP0032
+PROD000277,Sports Product 277,Sports,General,490.75,198.48,"Kelley, Nicholson and White",10,SUP0007
+PROD000278,Sports Product 278,Sports,General,375.28,281.16,Green-Murray,712,SUP0033
+PROD000279,Clothing Product 279,Clothing,General,238.73,151.26,"Wise, Rodriguez and Anderson",946,SUP0010
+PROD000280,Clothing Product 280,Clothing,General,252.73,111.82,Jefferson PLC,389,SUP0006
+PROD000281,Electronics Product 281,Electronics,General,144.71,81.09,Martin and Sons,870,SUP0017
+PROD000282,Home & Kitchen Product 282,Home & Kitchen,General,461.9,238.05,Stewart and Sons,909,SUP0028
+PROD000283,Clothing Product 283,Clothing,General,29.98,14.63,Ewing and Sons,637,SUP0049
+PROD000284,Clothing Product 284,Clothing,General,248.79,157.06,Rivera-Ewing,172,SUP0030
+PROD000285,Clothing Product 285,Clothing,General,460.67,195.47,"Chan, Dalton and Farmer",377,SUP0003
+PROD000286,Home & Kitchen Product 286,Home & Kitchen,General,327.52,197.63,Banks Inc,66,SUP0002
+PROD000287,Beauty Product 287,Beauty,General,170.84,74.59,Allen-Raymond,43,SUP0023
+PROD000288,Sports Product 288,Sports,General,234.97,150.94,Proctor-Santana,988,SUP0004
+PROD000289,Electronics Product 289,Electronics,General,436.38,256.47,Ramirez Group,708,SUP0050
+PROD000290,Books Product 290,Books,General,159.62,92.53,Roberts-Whitaker,648,SUP0001
+PROD000291,Beauty Product 291,Beauty,General,129.7,79.72,Barnes-Schaefer,198,SUP0016
+PROD000292,Sports Product 292,Sports,General,29.3,22.47,Torres-Caldwell,432,SUP0035
+PROD000293,Books Product 293,Books,General,466.92,266.38,Shaffer-Reynolds,849,SUP0016
+PROD000294,Home & Kitchen Product 294,Home & Kitchen,General,192.05,141.7,Guerrero-Kaiser,839,SUP0035
+PROD000295,Books Product 295,Books,General,86.5,66.43,Raymond-Scott,142,SUP0035
+PROD000296,Electronics Product 296,Electronics,General,160.41,122.8,"Gibson, Perez and Harvey",486,SUP0041
+PROD000297,Clothing Product 297,Clothing,General,146.68,69.69,Patel Ltd,423,SUP0023
+PROD000298,Electronics Product 298,Electronics,General,462.58,261.74,Morales Group,858,SUP0050
+PROD000299,Home & Kitchen Product 299,Home & Kitchen,General,18.07,12.83,Jackson-Brooks,537,SUP0017
+PROD000300,Beauty Product 300,Beauty,General,148.52,99.85,Hill Group,726,SUP0002
+PROD000301,Clothing Product 301,Clothing,General,201.63,116.16,"Gates, Lee and Sanchez",860,SUP0029
+PROD000302,Clothing Product 302,Clothing,General,414.66,298.46,Crawford PLC,802,SUP0003
+PROD000303,Beauty Product 303,Beauty,General,258.25,190.72,Phillips-Smith,204,SUP0033
+PROD000304,Electronics Product 304,Electronics,General,197.26,93.45,Gillespie and Sons,903,SUP0029
+PROD000305,Beauty Product 305,Beauty,General,241.85,106.11,"Wood, Fox and Fisher",961,SUP0035
+PROD000306,Electronics Product 306,Electronics,General,185.15,144.51,Ayers Inc,94,SUP0015
+PROD000307,Books Product 307,Books,General,103.13,44.78,Wood-Tucker,138,SUP0007
+PROD000308,Books Product 308,Books,General,264.62,120.4,Ferguson-Green,544,SUP0043
+PROD000309,Sports Product 309,Sports,General,198.81,126.02,Stanley-Aguirre,203,SUP0030
+PROD000310,Home & Kitchen Product 310,Home & Kitchen,General,209.89,124.2,Richardson Group,491,SUP0034
+PROD000311,Beauty Product 311,Beauty,General,455.31,230.12,Gibson Ltd,884,SUP0017
+PROD000312,Beauty Product 312,Beauty,General,238.38,135.61,Osborne and Sons,850,SUP0048
+PROD000313,Clothing Product 313,Clothing,General,323.86,138.7,Moore-Cobb,137,SUP0015
+PROD000314,Sports Product 314,Sports,General,152.63,69.5,Moore Group,935,SUP0022
+PROD000315,Books Product 315,Books,General,41.3,32.93,Hansen-Diaz,995,SUP0018
+PROD000316,Clothing Product 316,Clothing,General,296.33,130.28,"Brewer, Wheeler and Johnson",321,SUP0016
+PROD000317,Electronics Product 317,Electronics,General,472.44,240.23,Moss Ltd,973,SUP0005
+PROD000318,Beauty Product 318,Beauty,General,391.63,163.13,"Cooper, Ruiz and Scott",796,SUP0011
+PROD000319,Books Product 319,Books,General,482.39,282.87,Jones PLC,320,SUP0036
+PROD000320,Home & Kitchen Product 320,Home & Kitchen,General,53.43,27.09,Bowman-Davis,506,SUP0020
+PROD000321,Clothing Product 321,Clothing,General,465.81,292.35,Weber and Sons,471,SUP0030
+PROD000322,Clothing Product 322,Clothing,General,26.04,12.24,Davis-Farley,3,SUP0005
+PROD000323,Books Product 323,Books,General,102.72,47.78,"Greene, Dixon and Davis",601,SUP0036
+PROD000324,Beauty Product 324,Beauty,General,305.53,126.64,Gonzalez-Morrison,833,SUP0007
+PROD000325,Beauty Product 325,Beauty,General,157.65,73.09,"Johnston, Duncan and Wade",143,SUP0006
+PROD000326,Electronics Product 326,Electronics,General,207.11,85.28,Sellers and Sons,860,SUP0033
+PROD000327,Beauty Product 327,Beauty,General,219.87,99.47,"Torres, Petersen and Jones",630,SUP0048
+PROD000328,Beauty Product 328,Beauty,General,103.0,45.21,"Phillips, Huff and Flynn",103,SUP0030
+PROD000329,Home & Kitchen Product 329,Home & Kitchen,General,423.78,311.49,Vasquez Inc,75,SUP0021
+PROD000330,Beauty Product 330,Beauty,General,23.06,17.87,Mendoza Ltd,6,SUP0044
+PROD000331,Electronics Product 331,Electronics,General,144.79,108.6,Howard-Webb,833,SUP0041
+PROD000332,Electronics Product 332,Electronics,General,135.68,66.8,"Palmer, Whitaker and Howard",283,SUP0010
+PROD000333,Books Product 333,Books,General,417.07,327.83,Lyons Group,35,SUP0003
+PROD000334,Beauty Product 334,Beauty,General,208.74,139.98,Pruitt-Young,744,SUP0011
+PROD000335,Sports Product 335,Sports,General,100.08,49.13,Romero Inc,701,SUP0033
+PROD000336,Electronics Product 336,Electronics,General,433.33,183.18,Conrad Group,488,SUP0021
+PROD000337,Beauty Product 337,Beauty,General,162.97,119.6,"Herrera, Mccarthy and Martinez",415,SUP0043
+PROD000338,Clothing Product 338,Clothing,General,345.5,194.11,"Estrada, Irwin and Brown",910,SUP0023
+PROD000339,Beauty Product 339,Beauty,General,490.0,227.09,"Richard, Cruz and James",475,SUP0025
+PROD000340,Home & Kitchen Product 340,Home & Kitchen,General,406.76,192.8,Morris Ltd,643,SUP0047
+PROD000341,Beauty Product 341,Beauty,General,166.72,82.82,Stone-Lee,734,SUP0043
+PROD000342,Sports Product 342,Sports,General,248.49,120.34,"Ayers, Price and Rhodes",766,SUP0030
+PROD000343,Home & Kitchen Product 343,Home & Kitchen,General,495.1,337.61,"Lewis, Ramos and Johnson",381,SUP0048
+PROD000344,Books Product 344,Books,General,442.27,284.25,Collins Ltd,747,SUP0050
+PROD000345,Electronics Product 345,Electronics,General,48.12,34.61,"Knapp, Williams and Hartman",423,SUP0001
+PROD000346,Beauty Product 346,Beauty,General,403.94,199.07,Thompson Group,518,SUP0017
+PROD000347,Home & Kitchen Product 347,Home & Kitchen,General,248.1,134.74,"Rice, Molina and Hess",731,SUP0015
+PROD000348,Sports Product 348,Sports,General,168.64,101.3,Stone Group,88,SUP0022
+PROD000349,Home & Kitchen Product 349,Home & Kitchen,General,469.84,318.5,Jones-Dixon,14,SUP0022
+PROD000350,Beauty Product 350,Beauty,General,244.87,159.95,Le PLC,252,SUP0047
+PROD000351,Beauty Product 351,Beauty,General,120.26,64.23,Hernandez-Jacobs,559,SUP0013
+PROD000352,Beauty Product 352,Beauty,General,18.56,7.45,"Harrington, Oneal and Schultz",30,SUP0012
+PROD000353,Sports Product 353,Sports,General,98.51,63.79,"Berry, Ware and Taylor",663,SUP0005
+PROD000354,Home & Kitchen Product 354,Home & Kitchen,General,336.53,156.15,Lewis-Figueroa,873,SUP0018
+PROD000355,Electronics Product 355,Electronics,General,56.57,43.94,Ruiz and Sons,903,SUP0044
+PROD000356,Electronics Product 356,Electronics,General,314.95,230.07,"Brown, Baldwin and Stephenson",1,SUP0020
+PROD000357,Books Product 357,Books,General,336.87,197.54,"Wilkinson, Sherman and Young",403,SUP0007
+PROD000358,Home & Kitchen Product 358,Home & Kitchen,General,99.61,60.28,Johnson-Jones,760,SUP0026
+PROD000359,Home & Kitchen Product 359,Home & Kitchen,General,485.67,204.45,Montgomery Inc,38,SUP0029
+PROD000360,Electronics Product 360,Electronics,General,308.38,239.92,Leach-Madden,828,SUP0006
+PROD000361,Sports Product 361,Sports,General,398.98,189.05,Parker-Keith,570,SUP0050
+PROD000362,Books Product 362,Books,General,340.28,184.63,"Heath, Moses and Hernandez",218,SUP0020
+PROD000363,Beauty Product 363,Beauty,General,458.48,353.95,Wise-Davis,867,SUP0014
+PROD000364,Sports Product 364,Sports,General,266.06,152.76,"Jordan, Walker and Nash",756,SUP0032
+PROD000365,Home & Kitchen Product 365,Home & Kitchen,General,294.18,190.97,Norris-Smith,981,SUP0050
+PROD000366,Electronics Product 366,Electronics,General,207.72,123.64,"Bowman, Peterson and Carr",570,SUP0017
+PROD000367,Electronics Product 367,Electronics,General,294.53,148.23,Woodard-Landry,142,SUP0040
+PROD000368,Sports Product 368,Sports,General,312.59,139.43,"Smith, Washington and Ortega",879,SUP0032
+PROD000369,Home & Kitchen Product 369,Home & Kitchen,General,469.66,350.49,Wall-Lopez,608,SUP0023
+PROD000370,Clothing Product 370,Clothing,General,27.81,11.94,Mata-Evans,774,SUP0027
+PROD000371,Home & Kitchen Product 371,Home & Kitchen,General,90.55,51.32,Newman-Pace,492,SUP0016
+PROD000372,Beauty Product 372,Beauty,General,397.51,195.21,Meadows-Calderon,24,SUP0029
+PROD000373,Sports Product 373,Sports,General,395.28,225.88,Sanders-Smith,562,SUP0048
+PROD000374,Beauty Product 374,Beauty,General,457.54,324.03,Juarez-Cardenas,415,SUP0008
+PROD000375,Sports Product 375,Sports,General,159.67,82.49,Wright Group,753,SUP0038
+PROD000376,Clothing Product 376,Clothing,General,399.33,228.87,"Parks, Anderson and Olson",567,SUP0005
+PROD000377,Beauty Product 377,Beauty,General,273.75,143.82,"Martin, Madden and Hawkins",318,SUP0003
+PROD000378,Books Product 378,Books,General,379.79,170.08,Caldwell PLC,498,SUP0032
+PROD000379,Clothing Product 379,Clothing,General,214.06,165.18,Wood-Thompson,468,SUP0013
+PROD000380,Clothing Product 380,Clothing,General,401.04,238.63,"Mclaughlin, Gray and Gonzalez",880,SUP0025
+PROD000381,Beauty Product 381,Beauty,General,125.06,55.13,"Ruiz, Dawson and Rodriguez",496,SUP0011
+PROD000382,Books Product 382,Books,General,380.84,153.57,"Martin, Nguyen and Robinson",484,SUP0031
+PROD000383,Books Product 383,Books,General,382.64,233.88,Scott PLC,2,SUP0043
+PROD000384,Clothing Product 384,Clothing,General,456.52,274.59,Miller-Eaton,493,SUP0042
+PROD000385,Clothing Product 385,Clothing,General,162.16,70.0,"Stewart, Nelson and Pena",641,SUP0005
+PROD000386,Clothing Product 386,Clothing,General,378.03,156.47,"Herman, Howard and Howard",111,SUP0011
+PROD000387,Sports Product 387,Sports,General,201.96,141.69,"Morgan, Alexander and Bartlett",945,SUP0031
+PROD000388,Clothing Product 388,Clothing,General,65.43,31.87,"Garcia, Harris and Watson",548,SUP0048
+PROD000389,Beauty Product 389,Beauty,General,195.91,145.17,"Carpenter, Williams and Bishop",703,SUP0042
+PROD000390,Books Product 390,Books,General,122.27,78.26,Jones Group,689,SUP0001
+PROD000391,Beauty Product 391,Beauty,General,434.89,274.09,Turner LLC,283,SUP0036
+PROD000392,Electronics Product 392,Electronics,General,120.07,72.63,Richards PLC,918,SUP0017
+PROD000393,Beauty Product 393,Beauty,General,378.36,218.27,Sutton Ltd,20,SUP0038
+PROD000394,Books Product 394,Books,General,416.01,294.12,"Wright, Dawson and Miller",417,SUP0039
+PROD000395,Sports Product 395,Sports,General,29.36,15.5,Anderson-Michael,456,SUP0049
+PROD000396,Books Product 396,Books,General,299.32,160.06,Barnes-Walton,884,SUP0044
+PROD000397,Home & Kitchen Product 397,Home & Kitchen,General,67.68,46.8,"Nguyen, Scott and Ray",514,SUP0009
+PROD000398,Electronics Product 398,Electronics,General,259.53,190.84,Gray Ltd,618,SUP0039
+PROD000399,Books Product 399,Books,General,169.65,134.69,Wood-Lambert,170,SUP0048
+PROD000400,Electronics Product 400,Electronics,General,63.54,32.78,Cox and Sons,916,SUP0007
+PROD000401,Home & Kitchen Product 401,Home & Kitchen,General,162.88,78.53,Lopez Ltd,132,SUP0008
+PROD000402,Beauty Product 402,Beauty,General,477.45,212.65,Wheeler-Choi,984,SUP0046
+PROD000403,Beauty Product 403,Beauty,General,119.61,80.73,Young LLC,128,SUP0009
+PROD000404,Books Product 404,Books,General,32.64,14.36,King PLC,176,SUP0040
+PROD000405,Clothing Product 405,Clothing,General,77.3,61.42,Mcgee-Anderson,829,SUP0024
+PROD000406,Sports Product 406,Sports,General,360.2,275.93,Newman-Hutchinson,673,SUP0017
+PROD000407,Clothing Product 407,Clothing,General,368.74,163.28,Esparza-Gomez,779,SUP0029
+PROD000408,Home & Kitchen Product 408,Home & Kitchen,General,96.5,66.68,Harrell and Sons,939,SUP0031
+PROD000409,Clothing Product 409,Clothing,General,472.85,209.56,"Rubio, Chapman and Vasquez",423,SUP0013
+PROD000410,Clothing Product 410,Clothing,General,168.6,74.99,Bishop LLC,513,SUP0032
+PROD000411,Beauty Product 411,Beauty,General,446.95,254.13,Flores Group,323,SUP0006
+PROD000412,Home & Kitchen Product 412,Home & Kitchen,General,480.6,273.13,"Valdez, Medina and Carr",745,SUP0035
+PROD000413,Beauty Product 413,Beauty,General,458.74,253.58,"Love, Thomas and Elliott",465,SUP0039
+PROD000414,Electronics Product 414,Electronics,General,30.87,18.75,"Clark, Scott and Mcbride",227,SUP0019
+PROD000415,Home & Kitchen Product 415,Home & Kitchen,General,296.28,176.48,Perez and Sons,465,SUP0006
+PROD000416,Books Product 416,Books,General,281.95,123.82,Hill and Sons,324,SUP0036
+PROD000417,Sports Product 417,Sports,General,219.02,170.97,Bailey-Mullen,243,SUP0041
+PROD000418,Clothing Product 418,Clothing,General,164.81,107.14,"Garcia, Hess and Johnson",988,SUP0016
+PROD000419,Home & Kitchen Product 419,Home & Kitchen,General,409.66,219.58,Kennedy-Greer,751,SUP0035
+PROD000420,Beauty Product 420,Beauty,General,398.68,227.92,Sherman-Cooper,755,SUP0036
+PROD000421,Beauty Product 421,Beauty,General,348.84,146.07,"Ortiz, Fuller and Blackwell",542,SUP0010
+PROD000422,Beauty Product 422,Beauty,General,106.66,70.78,"Barry, Gonzalez and Roberts",745,SUP0032
+PROD000423,Sports Product 423,Sports,General,335.75,178.56,Marquez Group,351,SUP0013
+PROD000424,Clothing Product 424,Clothing,General,11.01,6.5,Williams-Valdez,252,SUP0027
+PROD000425,Home & Kitchen Product 425,Home & Kitchen,General,31.99,24.47,"Williams, Rodriguez and Rice",391,SUP0045
+PROD000426,Electronics Product 426,Electronics,General,148.28,102.08,Tran-Villanueva,756,SUP0039
+PROD000427,Beauty Product 427,Beauty,General,81.05,46.38,"Dunn, Donaldson and Myers",900,SUP0012
+PROD000428,Beauty Product 428,Beauty,General,338.55,245.61,Franco-Pierce,7,SUP0016
+PROD000429,Sports Product 429,Sports,General,118.54,93.4,"Cummings, Brown and Martinez",469,SUP0026
+PROD000430,Electronics Product 430,Electronics,General,89.06,53.03,"Juarez, Martin and Jones",555,SUP0003
+PROD000431,Sports Product 431,Sports,General,298.14,235.67,"Rodriguez, Salas and Cross",62,SUP0049
+PROD000432,Electronics Product 432,Electronics,General,275.68,215.81,Dean-Hawkins,431,SUP0035
+PROD000433,Books Product 433,Books,General,164.23,129.84,Schwartz Group,170,SUP0016
+PROD000434,Electronics Product 434,Electronics,General,204.59,92.65,"Powell, Torres and Clark",784,SUP0029
+PROD000435,Home & Kitchen Product 435,Home & Kitchen,General,81.63,47.83,Watson-Peterson,370,SUP0021
+PROD000436,Clothing Product 436,Clothing,General,301.02,123.62,"Richardson, Cole and Thompson",762,SUP0007
+PROD000437,Books Product 437,Books,General,349.97,208.5,Thomas Inc,236,SUP0039
+PROD000438,Books Product 438,Books,General,352.67,163.08,Lewis-Floyd,692,SUP0012
+PROD000439,Home & Kitchen Product 439,Home & Kitchen,General,374.39,281.51,Miller LLC,165,SUP0027
+PROD000440,Home & Kitchen Product 440,Home & Kitchen,General,117.29,81.28,Mills-Lee,175,SUP0027
+PROD000441,Clothing Product 441,Clothing,General,174.66,79.85,Villanueva Ltd,963,SUP0018
+PROD000442,Clothing Product 442,Clothing,General,201.79,158.82,Jackson Ltd,845,SUP0017
+PROD000443,Sports Product 443,Sports,General,214.87,152.35,Hartman and Sons,86,SUP0010
+PROD000444,Home & Kitchen Product 444,Home & Kitchen,General,221.31,96.89,"Cline, Oconnor and Pace",435,SUP0047
+PROD000445,Clothing Product 445,Clothing,General,304.03,205.98,"Meyer, Fitzgerald and Anderson",142,SUP0015
+PROD000446,Home & Kitchen Product 446,Home & Kitchen,General,453.16,252.71,"Goodwin, Reyes and Cook",424,SUP0015
+PROD000447,Beauty Product 447,Beauty,General,34.06,26.86,"Day, Huang and Robinson",125,SUP0031
+PROD000448,Clothing Product 448,Clothing,General,38.99,21.08,Henry Ltd,304,SUP0025
+PROD000449,Beauty Product 449,Beauty,General,20.72,12.32,Wyatt-Green,663,SUP0043
+PROD000450,Clothing Product 450,Clothing,General,162.73,69.43,Castillo and Sons,676,SUP0001
+PROD000451,Beauty Product 451,Beauty,General,254.62,115.53,Gray and Sons,611,SUP0031
+PROD000452,Electronics Product 452,Electronics,General,252.3,193.7,Cohen-Mccarty,751,SUP0041
+PROD000453,Clothing Product 453,Clothing,General,104.59,52.5,Alexander-Decker,886,SUP0040
+PROD000454,Sports Product 454,Sports,General,310.21,161.51,"Goodman, Stone and Wilson",297,SUP0007
+PROD000455,Home & Kitchen Product 455,Home & Kitchen,General,118.77,72.97,Shea Group,547,SUP0043
+PROD000456,Electronics Product 456,Electronics,General,484.76,373.51,"Davis, Torres and Zuniga",203,SUP0046
+PROD000457,Electronics Product 457,Electronics,General,495.82,205.4,Hurst-Jones,233,SUP0016
+PROD000458,Beauty Product 458,Beauty,General,166.43,107.6,Walters-Hall,174,SUP0029
+PROD000459,Electronics Product 459,Electronics,General,310.2,215.45,Miller-Patterson,117,SUP0035
+PROD000460,Clothing Product 460,Clothing,General,325.54,214.27,Cooper Inc,269,SUP0017
+PROD000461,Books Product 461,Books,General,133.73,84.46,Mcguire-Aguilar,991,SUP0044
+PROD000462,Electronics Product 462,Electronics,General,280.81,174.1,Barrett and Sons,945,SUP0032
+PROD000463,Clothing Product 463,Clothing,General,216.63,102.51,"Graves, Miller and Hall",703,SUP0037
+PROD000464,Home & Kitchen Product 464,Home & Kitchen,General,73.34,47.75,"Miller, Stevenson and Morris",968,SUP0007
+PROD000465,Books Product 465,Books,General,225.13,124.86,Bennett Group,921,SUP0034
+PROD000466,Sports Product 466,Sports,General,365.18,196.89,Ortiz and Sons,589,SUP0004
+PROD000467,Clothing Product 467,Clothing,General,84.22,44.73,Collins Inc,153,SUP0046
+PROD000468,Electronics Product 468,Electronics,General,427.23,198.75,Rollins-Tyler,736,SUP0038
+PROD000469,Books Product 469,Books,General,388.12,263.63,Martin-Edwards,626,SUP0018
+PROD000470,Beauty Product 470,Beauty,General,457.79,184.04,Floyd-Fleming,363,SUP0033
+PROD000471,Sports Product 471,Sports,General,327.8,213.73,Nguyen-Gross,911,SUP0038
+PROD000472,Books Product 472,Books,General,366.26,276.85,Franco LLC,490,SUP0012
+PROD000473,Sports Product 473,Sports,General,260.24,174.88,"Bradley, Fisher and White",138,SUP0003
+PROD000474,Beauty Product 474,Beauty,General,185.58,83.63,Pitts-Jones,823,SUP0011
+PROD000475,Books Product 475,Books,General,409.32,228.36,"Gray, Decker and Morrow",122,SUP0022
+PROD000476,Books Product 476,Books,General,159.54,88.14,Jones Inc,110,SUP0050
+PROD000477,Electronics Product 477,Electronics,General,312.33,146.38,Le LLC,116,SUP0025
+PROD000478,Beauty Product 478,Beauty,General,434.99,195.22,Schroeder Inc,179,SUP0036
+PROD000479,Clothing Product 479,Clothing,General,87.79,68.08,Wade-Ortiz,263,SUP0007
+PROD000480,Sports Product 480,Sports,General,281.88,113.63,"Simmons, Rodriguez and Matthews",616,SUP0004
+PROD000481,Home & Kitchen Product 481,Home & Kitchen,General,195.61,121.25,Smith LLC,522,SUP0043
+PROD000482,Beauty Product 482,Beauty,General,450.67,276.02,"Carter, Smith and Sparks",570,SUP0005
+PROD000483,Home & Kitchen Product 483,Home & Kitchen,General,475.16,322.76,Webb-Bradley,994,SUP0036
+PROD000484,Electronics Product 484,Electronics,General,45.29,28.63,Munoz Inc,463,SUP0028
+PROD000485,Clothing Product 485,Clothing,General,446.32,320.44,Wilson and Sons,844,SUP0005
+PROD000486,Beauty Product 486,Beauty,General,168.82,115.64,Harvey-Combs,109,SUP0019
+PROD000487,Sports Product 487,Sports,General,101.33,65.18,Stanley-Peck,296,SUP0034
+PROD000488,Sports Product 488,Sports,General,268.73,115.91,Tyler Inc,641,SUP0029
+PROD000489,Clothing Product 489,Clothing,General,259.29,107.86,Butler Ltd,207,SUP0012
+PROD000490,Sports Product 490,Sports,General,162.74,108.82,Nelson-Gutierrez,326,SUP0005
+PROD000491,Beauty Product 491,Beauty,General,142.96,63.8,Holloway-Woods,750,SUP0015
+PROD000492,Electronics Product 492,Electronics,General,486.23,315.97,George PLC,582,SUP0045
+PROD000493,Electronics Product 493,Electronics,General,39.68,17.24,"Bush, Morrison and Wood",524,SUP0026
+PROD000494,Clothing Product 494,Clothing,General,258.79,144.03,Walker PLC,521,SUP0045
+PROD000495,Books Product 495,Books,General,251.37,151.25,Morgan LLC,783,SUP0019
+PROD000496,Electronics Product 496,Electronics,General,417.54,305.29,Johnson Group,321,SUP0044
+PROD000497,Home & Kitchen Product 497,Home & Kitchen,General,170.06,84.7,"Atkinson, Vega and Harris",840,SUP0016
+PROD000498,Books Product 498,Books,General,345.53,249.4,"Webb, Nichols and Friedman",697,SUP0039
+PROD000499,Sports Product 499,Sports,General,276.35,114.73,Tucker LLC,938,SUP0039
+PROD000500,Clothing Product 500,Clothing,General,268.1,193.08,Tucker Inc,992,SUP0020
