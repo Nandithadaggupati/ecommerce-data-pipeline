@@ -1,0 +1,33 @@
+database:
+  host: ${DB_HOST}
+  port: ${DB_PORT}
+  name: ${DB_NAME}
+  user: ${DB_USER}
+  password: ${DB_PASSWORD}
+
+data_generation:
+  num_customers: 1000
+  num_products: 500
+  num_transactions: 10000
+  min_items_per_txn: 1
+  max_items_per_txn: 5
+  start_date: "2023-01-01"
+  end_date: "2023-12-31"
+
+pipeline:
+  batch_size: 1000
+  log_level: "INFO"
+  max_retries: 3
+  retry_delay_seconds: 30
+
+data_quality:
+  completeness_weight: 0.2
+  uniqueness_weight: 0.2
+  validity_weight: 0.2
+  consistency_weight: 0.2
+  referential_integrity_weight: 0.2
+  min_acceptable_score: 80.0
+
+bi_tool:
+  tool: "tableau"
+  connection_string: "postgresql://"
