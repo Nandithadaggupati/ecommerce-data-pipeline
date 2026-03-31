@@ -26,7 +26,8 @@ def validate_staging_load(connection) -> dict:
         results[f"staging.{t}"] = {"rows_loaded": count, "status": "success"}
     return results
 
-if __name__ == "__main__":
+def main():
+
     from dotenv import load_dotenv
     load_dotenv()
     
@@ -70,3 +71,6 @@ if __name__ == "__main__":
     with open("logs/ingestion.log", "a") as f:
         f.write(f"{datetime.datetime.now().isoformat()} - START INGESTION\n")
         f.write(f"Summary: {json.dumps(summary)}\n")
+
+if __name__ == '__main__':
+    main()

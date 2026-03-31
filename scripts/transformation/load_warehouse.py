@@ -152,7 +152,8 @@ def build_fact_sales(connection) -> int:
     
     return connection.execute(text("SELECT COUNT(*) FROM warehouse.fact_sales")).scalar()
 
-if __name__ == "__main__":
+def main():
+
     from dotenv import load_dotenv
     load_dotenv()
     
@@ -176,3 +177,13 @@ if __name__ == "__main__":
         print("Fact Sales...")
         build_fact_sales(conn)
         print("Done")
+        
+    report = {
+        "dimensions_built": ["dim_date", "dim_payment_method", "dim_customers", "dim_products"],
+        "fact_tables_built": ["fact_sales"],
+        "aggregates_built": ["agg_daily_sales", "agg_product_performance", "agg_customer_metrics"]
+    }
+    with open("data/processed/warehouse_build_report.json", "w") as f:
+        json.dump(report, f, indent=4)
+if __name__ == '__main__':
+    main()

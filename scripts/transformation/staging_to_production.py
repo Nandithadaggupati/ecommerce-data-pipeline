@@ -54,7 +54,8 @@ def load_to_production(df: pd.DataFrame, table_name: str, connection, strategy: 
         print(f"Error loading {table_name}: {e}")
         return {"input": start_count, "output": 0, "filtered": start_count, "rejected_reasons": {"error": str(e)}}
 
-if __name__ == "__main__":
+def main():
+
     from sqlalchemy import create_engine
     from dotenv import load_dotenv
     load_dotenv()
@@ -70,7 +71,7 @@ if __name__ == "__main__":
     
     summary = {
         "transformation_timestamp": datetime.datetime.now().isoformat(),
-        "records_processed": {},
+        "tables_transformed": {},
         "transformations_applied": ["cleanse_data", "apply_business_rules", "truncate_insert_dims", "incremental_facts"]
     }
     
@@ -79,22 +80,25 @@ if __name__ == "__main__":
         print("Transforming customers...")
         df_c = pd.read_sql("SELECT * FROM staging.customers", conn)
         df_c = cleanse_customer_data(df_c)
-        summary["records_processed"]["customers"] = load_to_production(df_c, "customers", conn, "truncate_insert")
+        summary["tables_transformed"]["customers"] = load_to_production(df_c, "customers", conn, "truncate_insert")
         
         print("Transforming products...")
         df_p = pd.read_sql("SELECT * FROM staging.products", conn)
         df_p = cleanse_product_data(df_p)
-        summary["records_processed"]["products"] = load_to_production(df_p, "products", conn, "truncate_insert")
+        summary["tables_transformed"]["products"] = load_to_production(df_p, "products", conn, "truncate_insert")
         
         print("Transforming transactions...")
         df_t = pd.read_sql("SELECT * FROM staging.transactions", conn)
         df_t = apply_business_rules(df_t, 'transactions')
-        summary["records_processed"]["transactions"] = load_to_production(df_t, "transactions", conn, "incremental")
+        summary["tables_transformed"]["transactions"] = load_to_production(df_t, "transactions", conn, "incremental")
         
         print("Transforming transaction_items...")
         df_ti = pd.read_sql("SELECT * FROM staging.transaction_items", conn)
         df_ti = apply_business_rules(df_ti, 'transaction_items')
-        summary["records_processed"]["transaction_items"] = load_to_production(df_ti, "transaction_items", conn, "incremental")
+        summary["tables_transformed"]["transaction_items"] = load_to_production(df_ti, "transaction_items", conn, "incremental")
         
     with open("data/processed/transformation_summary.json", "w") as f:
         json.dump(summary, f, indent=4)
+
+if __name__ == '__main__':
+    main()

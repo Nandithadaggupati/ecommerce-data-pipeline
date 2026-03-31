@@ -105,7 +105,8 @@ def calculate_quality_score(check_results: dict) -> float:
     
     return max(0.0, score)
 
-if __name__ == "__main__":
+def main():
+
     from dotenv import load_dotenv
     load_dotenv()
     
@@ -143,3 +144,6 @@ if __name__ == "__main__":
         f.write(f"{datetime.datetime.now().isoformat()} - SCORE: {score} - GRADE: {report['quality_grade']}\n")
     
     print(f"Data Quality Validation Complete. Score: {score}")
+
+if __name__ == '__main__':
+    main()

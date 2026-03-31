@@ -14,9 +14,9 @@ jobs:
       postgres:
         image: postgres:14
         env:
-          POSTGRES_DB: ecommerce_db_test
-          POSTGRES_USER: test_user
-          POSTGRES_PASSWORD: test_password
+          POSTGRES_DB: ecommerce_db
+          POSTGRES_USER: admin
+          POSTGRES_PASSWORD: password
         ports:
           - 5432:5432
         options: >-
@@ -40,27 +40,19 @@ jobs:
           
       - name: Create schemas
         env:
-          DB_HOST: localhost
-          DB_PORT: 5432
-          DB_NAME: ecommerce_db_test
-          DB_USER: test_user
-          DB_PASSWORD: test_password
+          PGPASSWORD: password
         run: |
-          export PGPASSWORD=test_password
-          psql -h localhost -U test_user -d ecommerce_db_test -f sql/ddl/create_staging_schema.sql
-          psql -h localhost -U test_user -d ecommerce_db_test -f sql/ddl/create_production_schema.sql
-          psql -h localhost -U test_user -d ecommerce_db_test -f sql/ddl/create_warehouse_schema.sql
+          sleep 5
+          psql -h localhost -U admin -d ecommerce_db -f sql/ddl/create_staging_schema.sql
+          psql -h localhost -U admin -d ecommerce_db -f sql/ddl/create_production_schema.sql
+          psql -h localhost -U admin -d ecommerce_db -f sql/ddl/create_warehouse_schema.sql
           
       - name: Run tests
         env:
           DB_HOST: localhost
           DB_PORT: 5432
-          DB_NAME: ecommerce_db_test
-          DB_USER: test_user
-          DB_PASSWORD: test_password
+          DB_NAME: ecommerce_db
+          DB_USER: admin
+          DB_PASSWORD: password
         run: |
           python -m pytest tests/ -v
-          
-      - name: Check coverage
-        run: |
-          coverage report

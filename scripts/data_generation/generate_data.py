@@ -124,7 +124,8 @@ def validate_referential_integrity(customers: pd.DataFrame, products: pd.DataFra
         "data_quality_score": 100 if orphan_count == 0 else max(0, 100 - orphan_count)
     }
 
-if __name__ == "__main__":
+def main():
+
     import yaml
     try:
         with open("config/config.yaml", "r") as f:
@@ -153,7 +154,7 @@ if __name__ == "__main__":
     df_items.to_csv("data/raw/transaction_items.csv", index=False, quoting=csv.QUOTE_MINIMAL)
     
     meta = {
-        "timestamp": datetime.datetime.now().isoformat(),
+        "generated_at": datetime.datetime.now().isoformat(),
         "record_counts": {
             "customers": len(df_customers),
             "products": len(df_products),
@@ -164,3 +165,6 @@ if __name__ == "__main__":
     }
     with open("data/raw/generation_metadata.json", "w") as f:
         json.dump(meta, f, indent=4)
+
+if __name__ == '__main__':
+    main()
