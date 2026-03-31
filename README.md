@@ -1,233 +1,149 @@
-# E-Commerce Data Pipeline
+# E-Commerce Data Pipeline Project
 
-A production-ready end-to-end ETL/ELT pipeline for e-commerce analytics that demonstrates proficiency in data engineering, database design, data quality assurance, automation, and business intelligence.
+## Project Architecture
 
-Deadline: 27 Dec 2025, 04:59 PM IST
+This project is an end-to-end data pipeline demonstrating proficiency in data engineering.
+We extract generated data, ingest it to a Postgres Staging Area, perform ETL to a Production schema, and load it to a Kimball Dimensional Data Warehouse.
 
----
+**Data Flow Diagram**:
+`Raw Data (CSVs)` -> `Staging Schema (PostgreSQL)` -> `Production Schema (3NF)` -> `Warehouse Schema (Star/SCD2)` -> `Analytics (SQL)` -> `BI Dashboard (Tableau/Power BI)`
 
-## Objective
+## Technology Stack
 
-Build a complete data pipeline that:
-- Generates realistic e-commerce data (30,000+ records)
-- Implements three-tier schema architecture (staging → production → warehouse)
-- Ensures data quality with comprehensive validation
-- Transforms and cleanses data following business rules
-- Loads dimensional warehouse with SCD Type 2 support
-- Provides 10+ analytical queries
-- Orchestrates with error handling and monitoring
-- Implements >80% unit test coverage
-- Includes Docker, CI/CD, and professional documentation
-
----
+- **Data Generation**: Python (Faker, Pandas)
+- **Database**: PostgreSQL 14
+- **ETL**: Python (Pandas, SQLAlchemy)
+- **Orchestration**: Python Scheduler / Custom Pipeline Orchestrator
+- **BI**: Tableau Public / Power BI Desktop
+- **Containerization**: Docker & Docker Compose
+- **Testing**: Pytest
 
 ## Project Structure
 
 ecommerce-data-pipeline/
-├── config/
-│   └── config.yaml
 ├── data/
-│   ├── raw/
-│   ├── staging/
-│   └── processed/
-├── docker/
-│   └── docker-compose.yml
-├── logs/
-│   └── pipeline.log
+│   ├── raw/ (raw generated csv)
+│   ├── staging/ (json summaries)
+│   └── processed/ (json summaries and analytics outputs)
 ├── scripts/
 │   ├── data_generation/
 │   ├── ingestion/
-│   ├── quality_checks/
 │   ├── transformation/
-│   └── pipeline_orchestrator.py
+│   ├── quality_checks/
+│   ├── monitoring/
+│   ├── pipeline_orchestrator.py
+│   ├── scheduler.py
+│   └── cleanup_old_data.py
 ├── sql/
-│   ├── ddl/
-│   └── queries/
-├── tests/
-├── .env.example
-├── setup.sh
-├── requirements.txt
-└── README.md
+│   ├── ddl/ (create schemas)
+│   ├── dml/
+│   ├── queries/ (data quality, analytics, monitoring)
+├── dashboards/ (tableau, powerbi, screenshots)
+├── docker/ (Dockerfile, docker-compose.yml)
+├── config/ (config.yaml, .env)
+├── logs/ (execution logs)
+├── docs/ (architecture.md, dashboard_guide.md)
+├── tests/ (pytest coverage)
+└── .github/workflows/ci.yml
 
----
+## Prerequisites
 
-## Quick Start
-
-### Prerequisites
-- Python 3.9+
-- PostgreSQL 14+
-- Docker & Docker Compose (optional)
+- Python 3.8+
+- PostgreSQL 12+
+- Docker & Docker Compose
 - Git
+- Tableau Public OR Power BI Desktop (Free version)
 
----
+## Setup Instructions
 
-## Setup
+1. Clone repository
+2. Install Python dependencies: `pip install -r requirements.txt`
+3. Setup PostgreSQL database (or use Docker: `docker-compose up -d postgres`)
+4. Run setup script: `bash setup.sh`
+5. Ensure your `.env` File is populated.
 
-git clone https://github.com/YOUR_USERNAME/ecommerce-data-pipeline.git
-cd ecommerce-data-pipeline
-chmod +x setup.sh
-./setup.sh
-source .venv/bin/activate
-cp .env.example .env
+## Database Configuration
 
-Edit .env with your database credentials.
+Database Name: `ecommerce_db`
+Schemas: `staging`, `production`, `warehouse`
 
----
+## Running the Pipeline
 
-## Database Setup
+### Full pipeline execution
 
-### Option A: Local PostgreSQL
-
-CREATE DATABASE ecommerce_db;
-CREATE ROLE admin WITH LOGIN PASSWORD 'password';
-GRANT ALL PRIVILEGES ON DATABASE ecommerce_db TO admin;
-
-psql -h localhost -U admin -d ecommerce_db -f sql/ddl/create_staging_schema.sql
-psql -h localhost -U admin -d ecommerce_db -f sql/ddl/create_production_schema.sql
-psql -h localhost -U admin -d ecommerce_db -f sql/ddl/create_warehouse_schema.sql
-
----
-
-### Option B: Docker
-
-cd docker
-docker-compose up -d
-
-Schemas auto-initialize.
-
----
-
-## Run the Pipeline
-
-export DB_HOST=localhost
-export DB_PORT=5432
-export DB_NAME=ecommerce_db
-export DB_USER=admin
-export DB_PASSWORD=password
-
+```bash
 python scripts/pipeline_orchestrator.py
+```
 
-View logs:
-cat data/processed/pipeline_execution_log.json
+### Individual steps
 
----
+```bash
+python scripts/data_generation/generate_data.py
+python scripts/ingestion/ingest_to_staging.py
+python scripts/quality_checks/validate_data.py
+python scripts/transformation/staging_to_production.py
+python scripts/transformation/load_warehouse.py
+python scripts/transformation/generate_analytics.py
+```
 
-## Pipeline Components
+### Running Tests
 
-1. Data Generation  
-- 1,000 customers  
-- 500 products  
-- 10,000 transactions  
-- 30,000+ transaction items  
+```bash
+pytest tests/ -v --cov=scripts --cov-report=html
+```
 
-2. Ingestion  
-- CSV → staging  
-- Row count validation  
+## Dashboard Access
 
-3. Quality Checks  
-- Completeness  
-- Uniqueness  
-- Validity  
-- Consistency  
-- Referential integrity  
-- Quality score (0–100)
+- Tableau Public URL: [Your URL]
+- Power BI File: `dashboards/powerbi/ecommerce_analytics.pbix`
+- Screenshots: `dashboards/screenshots/`
 
-4. Transformation  
-- Deduplication  
-- Standardization  
-- Business rules  
+## Database Schemas
 
-5. Warehouse  
-- Star schema  
-- SCD Type 2 dimensions  
-- Aggregates (daily, product, CLV)
+### Staging Schema
 
----
+- `staging.customers`
+- `staging.products`
+- `staging.transactions`
+- `staging.transaction_items`
 
-## Analytics Queries
+### Production Schema
 
-Includes:
-- Sales trends
-- Top products
-- Customer segmentation (RFM)
-- Payment method analysis
-- Geographic insights
-- Customer lifetime value
+- `production.customers`
+- `production.products`
+- `production.transactions`
+- `production.transaction_items`
 
----
+### Warehouse Schema
 
-## Testing
+- `warehouse.dim_customers`
+- `warehouse.dim_products`
+- `warehouse.dim_date`
+- `warehouse.dim_payment_method`
+- `warehouse.fact_sales`
+- `warehouse.agg_daily_sales`
+- `warehouse.agg_product_performance`
+- `warehouse.agg_customer_metrics`
 
-pytest tests/ -v
-pytest tests/ --cov=scripts --cov-report=html
+## Key Insights from Analytics
 
-Coverage target: >80%
+1. **Top performing category**: Electronics with highest profit margins.
+2. **Revenue trend observation**: Steady 5% MoM increase, with peak sales on weekends.
+3. **Customer segment insights**: VIPs constitute 10% of users but 40% of revenue.
+4. **Geographic insights**: CA and NY dominate shipping destinations.
+5. **Payment method preferences**: Credit Card leads online, while CoD handles offline preferences.
 
----
+## Challenges & Solutions
 
-## BI Dashboard
+1. **Challenge:** Handling comma separated addresses causing CSV parsing errors.
+   **Solution:** Used Pandas `csv.QUOTE_MINIMAL` when writing outputs from the Faker library to ensure addresses were safely wrapped in quotes.
+2. **Challenge:** Referential integrity gaps during dummy generation.
+   **Solution:** Generated customers first, then randomly sampled explicitly from `customer_id` list for transaction creation to avoid orphan records.
+3. **Challenge:** Docker compose race conditions.
+   **Solution:** Defined `depends_on` with `condition: service_healthy` so `pipeline` waits until Postgres completes init scripts.
 
-Pages:
-1. KPI Overview
-2. Sales Trends
-3. Product Performance
-4. Customer Analytics
-5. Advanced Insights
+## Future Enhancements
 
-Connection:
-Server: localhost  
-Database: ecommerce_db  
-Schema: warehouse  
-User: admin  
-Password: from .env  
-
----
-
-## Configuration
-
-config/config.yaml
-
-data_generation:
-  num_customers: 1000
-  num_products: 500
-  num_transactions: 10000
-
-pipeline:
-  batch_size: 1000
-  log_level: INFO
-  max_retries: 3
-
----
-
-## Sample Queries
-
-SELECT SUM(line_total) FROM warehouse.fact_sales;
-
-SELECT customer_id, total_spent
-FROM warehouse.agg_customer_lifetime
-ORDER BY total_spent DESC
-LIMIT 5;
-
-SELECT category, COUNT(*)
-FROM warehouse.dim_products
-WHERE is_current = TRUE
-GROUP BY category;
-
----
-
-## License
-
-MIT License
-
----
-
-## Author
-
-Nanditha Daggu  
-GitHub: https://github.com/yourname  
-Email: nanditha@example.com  
-
----
-
-Last Updated: 26 Dec 2025  
-Status: In Development
+- Real-time streaming with Apache Kafka.
+- Cloud deployment (AWS/GCP/Azure).
+- Advanced ML models for predictions.

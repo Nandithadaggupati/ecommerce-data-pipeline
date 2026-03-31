@@ -1,20 +1,21 @@
 import schedule
 import time
-import logging
 import subprocess
-
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+import os
+import sys
 
 def run_pipeline():
-    try:
-        logger.info("Starting pipeline")
-        subprocess.run(['python', 'scripts/pipeline_orchestrator.py'])
-    except Exception as e:
-        logger.error(str(e))
+    print("Initiating scheduled pipeline run...")
+    subprocess.run([sys.executable, "scripts/pipeline_orchestrator.py"])
+    subprocess.run([sys.executable, "scripts/cleanup_old_data.py"])
+    print("Scheduled tasks complete.")
 
 if __name__ == "__main__":
     schedule.every().day.at("02:00").do(run_pipeline)
-    while True:
-        schedule.run_pending()
-        time.sleep(60)
+    print("Scheduler started. Waiting for next execution...")
+    try:
+        while True:
+            schedule.run_pending()
+            time.sleep(60)
+    except KeyboardInterrupt:
+        print("Scheduler stopped.")

@@ -1,42 +1,30 @@
-# Python
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-*.pytest_cache/
-.venv/
-venv/
-
-# VS Code / IDE
-.vscode/
-.idea/
-
-# Environment
+# Environments
 .env
-.env.*
-*.env
-
-# Data
-data/raw/*
-data/staging/*
-data/processed/*
-!data/raw/.gitkeep
-!data/staging/.gitkeep
-!data/processed/.gitkeep
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+__pycache__/
+*.py[cod]
 
 # Logs
-logs/*
-!logs/.gitkeep
+logs/
+*.log
 
-# Reports / artifacts
-dashboards/**/*.twb
-dashboards/**/*.twbx
-dashboards/**/*.pbix
-dashboards/screenshots/*
+# Data
+data/raw/*.csv
+data/raw/*.json
+data/staging/*.csv
+data/staging/*.json
+data/processed/*.json
+data/processed/analytics/*.csv
 
-# Docker
+# Postgres
 docker/postgres_data/
 
-# OS files
-.DS_Store
-Thumbs.db
+# IDE
+.idea/
+.vscode/
+*.swp

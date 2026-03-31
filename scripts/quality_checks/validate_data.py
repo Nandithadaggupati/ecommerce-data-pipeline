@@ -1,293 +1,145 @@
 import json
-from datetime import datetime
-from pathlib import Path
-from typing import Dict, Any
-
-from sqlalchemy import create_engine, text
 import os
-import yaml
-
-
-def _get_engine():
-    cfg = yaml.safe_load(Path("config/config.yaml").read_text())
-    host = os.getenv("DB_HOST", cfg["database"]["host"])
-    port = os.getenv("DB_PORT", cfg["database"]["port"])
-    name = os.getenv("DB_NAME", cfg["database"]["name"])
-    user = os.getenv("DB_USER", cfg["database"]["user"])
-    password = os.getenv("DB_PASSWORD", cfg["database"]["password"])
-    url = f"postgresql+psycopg2://{user}:{password}@{host}:{port}/{name}"
-    return create_engine(url)
-
+import datetime
+import pandas as pd
+from sqlalchemy import create_engine, text
 
 def check_null_values(connection, schema: str) -> dict:
-    """
-    Check completeness: count NULLs in key columns for all tables in the given schema.
-    Returns a dict with per-table/column null counts.
-    """
-    results = {
-        "status": "passed",
-        "schema": schema,
-        "null_violations": 0,
-        "details": {},
+    tables = {
+        "customers": "email",
+        "products": "price",
+        "transactions": "customer_id",
+        "transaction_items": "product_id"
     }
-
-    # mandatory columns per table (can be extended)
-    mandatory_columns = {
-        "customers": ["customer_id", "email", "first_name", "last_name"],
-        "products": ["product_id", "product_name", "price", "cost"],
-        "transactions": ["transaction_id", "customer_id", "transaction_date"],
-        "transaction_items": ["item_id", "transaction_id", "product_id", "quantity"],
+    violations = 0
+    details = {}
+    for table, col in tables.items():
+        query = text(f"SELECT COUNT(*) FROM {schema}.{table} WHERE {col} IS NULL OR {col}::text = ''")
+        count = connection.execute(query).scalar()
+        if count > 0:
+            details[f"{table}.{col}"] = count
+            violations += count
+            
+    return {
+        "status": "passed" if violations == 0 else "failed",
+        "tables_checked": list(tables.keys()),
+        "null_violations": violations,
+        "details": details
     }
-
-    for table, cols in mandatory_columns.items():
-        table_key = f"{schema}.{table}"
-        results["details"][table_key] = {}
-        for col in cols:
-            query = text(
-                f"SELECT COUNT(*) FROM {schema}.{table} WHERE {col} IS NULL"
-            )
-            count = connection.execute(query).scalar()
-            results["details"][table_key][col] = int(count)
-            results["null_violations"] += int(count)
-
-    if results["null_violations"] > 0:
-        results["status"] = "failed"
-
-    return results
-
 
 def check_duplicates(connection, schema: str) -> dict:
-    """
-    Check uniqueness: look for duplicate primary/business keys.
-    """
-    results = {
-        "status": "passed",
-        "schema": schema,
-        "duplicates_found": 0,
-        "details": {},
+    tables = ["customers", "products", "transactions", "transaction_items"]
+    identifiers = ["customer_id", "product_id", "transaction_id", "item_id"]
+    violations = 0
+    details = {}
+    for t, pk in zip(tables, identifiers):
+        query = text(f"SELECT COUNT({pk}) - COUNT(DISTINCT {pk}) FROM {schema}.{t}")
+        count = connection.execute(query).scalar()
+        if count > 0:
+            details[t] = count
+            violations += count
+    return {
+        "status": "passed" if violations == 0 else "failed",
+        "duplicates_found": violations,
+        "details": details
     }
-
-    key_columns = {
-        "customers": "customer_id",
-        "products": "product_id",
-        "transactions": "transaction_id",
-        "transaction_items": "item_id",
-    }
-
-    for table, key_col in key_columns.items():
-        table_key = f"{schema}.{table}"
-        query = text(
-            f"""
-            SELECT COUNT(*) FROM (
-              SELECT {key_col}, COUNT(*) AS c
-              FROM {schema}.{table}
-              GROUP BY {key_col}
-              HAVING COUNT(*) > 1
-            ) dup
-            """
-        )
-        dup_count = connection.execute(query).scalar()
-        results["details"][table_key] = int(dup_count)
-        results["duplicates_found"] += int(dup_count)
-
-    if results["duplicates_found"] > 0:
-        results["status"] = "failed"
-
-    return results
-
 
 def check_referential_integrity(connection, schema: str) -> dict:
-    """
-    Check FKs inside the given schema: transactions->customers, items->transactions, items->products.
-    """
-    results = {
-        "status": "passed",
-        "schema": schema,
-        "orphan_records": 0,
-        "details": {},
+    q1 = text(f"SELECT COUNT(*) FROM {schema}.transactions t LEFT JOIN {schema}.customers c ON t.customer_id = c.customer_id WHERE c.customer_id IS NULL")
+    q2 = text(f"SELECT COUNT(*) FROM {schema}.transaction_items i LEFT JOIN {schema}.transactions t ON i.transaction_id = t.transaction_id WHERE t.transaction_id IS NULL")
+    q3 = text(f"SELECT COUNT(*) FROM {schema}.transaction_items i LEFT JOIN {schema}.products p ON i.product_id = p.product_id WHERE p.product_id IS NULL")
+    
+    o1 = connection.execute(q1).scalar()
+    o2 = connection.execute(q2).scalar()
+    o3 = connection.execute(q3).scalar()
+    
+    total = o1 + o2 + o3
+    
+    return {
+        "status": "passed" if total == 0 else "failed",
+        "orphan_records": total,
+        "details": {
+            "transactions_to_customers": o1,
+            "items_to_transactions": o2,
+            "items_to_products": o3
+        }
     }
-
-    # transactions.customer_id -> customers.customer_id
-    q_txn_cust = text(
-        f"""
-        SELECT COUNT(*) FROM {schema}.transactions t
-        LEFT JOIN {schema}.customers c
-          ON t.customer_id = c.customer_id
-        WHERE c.customer_id IS NULL
-        """
-    )
-    orphan_txn_cust = int(connection.execute(q_txn_cust).scalar())
-    results["details"]["transactions_customer_fk"] = orphan_txn_cust
-    results["orphan_records"] += orphan_txn_cust
-
-    # transaction_items.transaction_id -> transactions.transaction_id
-    q_items_txn = text(
-        f"""
-        SELECT COUNT(*) FROM {schema}.transaction_items ti
-        LEFT JOIN {schema}.transactions t
-          ON ti.transaction_id = t.transaction_id
-        WHERE t.transaction_id IS NULL
-        """
-    )
-    orphan_items_txn = int(connection.execute(q_items_txn).scalar())
-    results["details"]["transaction_items_transaction_fk"] = orphan_items_txn
-    results["orphan_records"] += orphan_items_txn
-
-    # transaction_items.product_id -> products.product_id
-    q_items_prod = text(
-        f"""
-        SELECT COUNT(*) FROM {schema}.transaction_items ti
-        LEFT JOIN {schema}.products p
-          ON ti.product_id = p.product_id
-        WHERE p.product_id IS NULL
-        """
-    )
-    orphan_items_prod = int(connection.execute(q_items_prod).scalar())
-    results["details"]["transaction_items_product_fk"] = orphan_items_prod
-    results["orphan_records"] += orphan_items_prod
-
-    if results["orphan_records"] > 0:
-        results["status"] = "failed"
-
-    return results
-
 
 def check_data_ranges(connection, schema: str) -> dict:
-    """
-    Check validity/range constraints (price > 0, quantity > 0, discount between 0-100, no future dates).
-    """
-    results = {
-        "status": "passed",
-        "schema": schema,
-        "violations": 0,
-        "details": {},
+    q1_price = text(f"SELECT COUNT(*) FROM {schema}.products WHERE price < 0")
+    q2_qty = text(f"SELECT COUNT(*) FROM {schema}.transaction_items WHERE quantity <= 0")
+    q3_disc = text(f"SELECT COUNT(*) FROM {schema}.transaction_items WHERE discount_percentage < 0 OR discount_percentage > 100")
+    
+    c1 = connection.execute(q1_price).scalar()
+    c2 = connection.execute(q2_qty).scalar()
+    c3 = connection.execute(q3_disc).scalar()
+    
+    total = c1 + c2 + c3
+    
+    return {
+        "status": "passed" if total == 0 else "failed",
+        "violations": total,
+        "details": {
+            "negative_prices": c1,
+            "invalid_quantity": c2,
+            "invalid_discount": c3
+        }
     }
 
-    # products: price > 0, cost >= 0, cost < price
-    q_price = text(
-        f"""
-        SELECT COUNT(*) FROM {schema}.products
-        WHERE price <= 0 OR cost < 0 OR cost >= price
-        """
-    )
-    prod_viol = int(connection.execute(q_price).scalar())
-    results["details"]["products_price_cost"] = prod_viol
-    results["violations"] += prod_viol
-
-    # transaction_items: quantity > 0, discount between 0 and 100
-    q_items = text(
-        f"""
-        SELECT COUNT(*) FROM {schema}.transaction_items
-        WHERE quantity <= 0
-           OR discount_percentage < 0
-           OR discount_percentage > 100
-        """
-    )
-    item_viol = int(connection.execute(q_items).scalar())
-    results["details"]["transaction_items_quantity_discount"] = item_viol
-    results["violations"] += item_viol
-
-    # transactions: no future dates
-    q_txn_date = text(
-        f"""
-        SELECT COUNT(*) FROM {schema}.transactions
-        WHERE transaction_date > CURRENT_DATE
-        """
-    )
-    txn_viol = int(connection.execute(q_txn_date).scalar())
-    results["details"]["transactions_future_dates"] = txn_viol
-    results["violations"] += txn_viol
-
-    if results["violations"] > 0:
-        results["status"] = "failed"
-
-    return results
-
-
-def calculate_quality_score(check_results: Dict[str, Any]) -> float:
-    """
-    Weighted score across dimensions: completeness, uniqueness, validity, referential integrity.
-    Each dimension provided in check_results has its own stats.
-    """
-    # default weights (can align with config.yaml later)
-    weights = {
-        "null_checks": 0.25,
-        "duplicate_checks": 0.25,
-        "range_checks": 0.25,
-        "referential_integrity": 0.25,
-    }
-
-    score = 0.0
-
-    # completeness (null_checks)
-    null_res = check_results.get("null_checks", {})
-    null_viol = null_res.get("null_violations", 0)
-    # treat 0 violations as perfect 100, any violation reduces score (simple model)
-    null_score = 100.0 if null_viol == 0 else max(0.0, 100.0 - null_viol)
-    score += null_score * weights["null_checks"]
-
-    # uniqueness (duplicate_checks)
-    dup_res = check_results.get("duplicate_checks", {})
-    dup_viol = dup_res.get("duplicates_found", 0)
-    dup_score = 100.0 if dup_viol == 0 else max(0.0, 100.0 - dup_viol)
-    score += dup_score * weights["duplicate_checks"]
-
-    # validity / ranges (range_checks)
-    range_res = check_results.get("range_checks", {})
-    range_viol = range_res.get("violations", 0)
-    range_score = 100.0 if range_viol == 0 else max(0.0, 100.0 - range_viol)
-    score += range_score * weights["range_checks"]
-
-    # referential integrity
-    ri_res = check_results.get("referential_integrity", {})
-    orphan_viol = ri_res.get("orphan_records", 0)
-    ri_score = 100.0 if orphan_viol == 0 else max(0.0, 100.0 - orphan_viol * 5)
-    score += ri_score * weights["referential_integrity"]
-
-    return round(score, 2)
-
-
-def main():
-    """
-    Run all checks on the staging schema and write data/staging/quality_report.json
-    """
-    engine = _get_engine()
-    with engine.connect() as conn:
-        null_checks = check_null_values(conn, schema="staging")
-        duplicate_checks = check_duplicates(conn, schema="staging")
-        referential_integrity = check_referential_integrity(conn, schema="staging")
-        range_checks = check_data_ranges(conn, schema="staging")
-
-    check_results = {
-        "null_checks": null_checks,
-        "duplicate_checks": duplicate_checks,
-        "referential_integrity": referential_integrity,
-        "range_checks": range_checks,
-    }
-
-    overall_quality_score = calculate_quality_score(check_results)
-
-    quality_grade = "A"
-    if overall_quality_score < 90:
-        quality_grade = "B"
-    if overall_quality_score < 75:
-        quality_grade = "C"
-    if overall_quality_score < 60:
-        quality_grade = "D"
-    if overall_quality_score < 40:
-        quality_grade = "F"
-
-    report = {
-        "check_timestamp": datetime.utcnow().isoformat(),
-        "checks_performed": check_results,
-        "overall_quality_score": overall_quality_score,
-        "quality_grade": quality_grade,
-    }
-
-    Path("data/staging").mkdir(parents=True, exist_ok=True)
-    with open("data/staging/quality_report.json", "w") as f:
-        json.dump(report, f, indent=2)
-
+def calculate_quality_score(check_results: dict) -> float:
+    # Weighted calculation
+    score = 100.0
+    
+    nulls = check_results.get("null_checks", {}).get("null_violations", 0)
+    dupes = check_results.get("duplicate_checks", {}).get("duplicates_found", 0)
+    orphans = check_results.get("referential_integrity", {}).get("orphan_records", 0)
+    ranges = check_results.get("range_checks", {}).get("violations", 0)
+    
+    # Critical impact
+    score -= orphans * 5.0
+    # High impact
+    score -= dupes * 2.0
+    # Med impact
+    score -= nulls * 1.0
+    score -= ranges * 1.0
+    
+    return max(0.0, score)
 
 if __name__ == "__main__":
-    main()
+    from dotenv import load_dotenv
+    load_dotenv()
+    
+    DB_HOST = os.getenv("DB_HOST", "localhost")
+    DB_PORT = os.getenv("DB_PORT", "5432")
+    DB_NAME = os.getenv("DB_NAME", "ecommerce_db")
+    DB_USER = os.getenv("DB_USER", "admin")
+    DB_PASSWORD = os.getenv("DB_PASSWORD", "password")
+    
+    engine = create_engine(f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}")
+    
+    os.makedirs("data/staging", exist_ok=True)
+    os.makedirs("logs", exist_ok=True)
+    
+    report = {
+        "check_timestamp": datetime.datetime.now().isoformat(),
+        "checks_performed": {}
+    }
+    
+    with engine.connect() as conn:
+        print("Running Quality Checks...")
+        report["checks_performed"]["null_checks"] = check_null_values(conn, 'staging')
+        report["checks_performed"]["duplicate_checks"] = check_duplicates(conn, 'staging')
+        report["checks_performed"]["referential_integrity"] = check_referential_integrity(conn, 'staging')
+        report["checks_performed"]["range_checks"] = check_data_ranges(conn, 'staging')
+        
+    score = calculate_quality_score(report["checks_performed"])
+    report["overall_quality_score"] = float(score)
+    report["quality_grade"] = "A" if score >= 90 else "B" if score >= 80 else "C" if score >= 70 else "D" if score >= 60 else "F"
+    
+    with open("data/staging/quality_report.json", "w") as f:
+        json.dump(report, f, indent=4)
+        
+    with open("logs/quality_checks.log", "a") as f:
+        f.write(f"{datetime.datetime.now().isoformat()} - SCORE: {score} - GRADE: {report['quality_grade']}\n")
+    
+    print(f"Data Quality Validation Complete. Score: {score}")

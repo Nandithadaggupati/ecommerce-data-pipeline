@@ -1,198 +1,100 @@
 import pandas as pd
+from sqlalchemy import text
 import json
-from sqlalchemy import create_engine, text
-from datetime import datetime
+import datetime
 import os
-import yaml
-from pathlib import Path
-from typing import Dict, Any
-
-def _get_engine():
-    cfg = yaml.safe_load(Path("config/config.yaml").read_text())
-    host = os.getenv("DB_HOST", cfg["database"]["host"])
-    port = os.getenv("DB_PORT", cfg["database"]["port"])
-    name = os.getenv("DB_NAME", cfg["database"]["name"])
-    user = os.getenv("DB_USER", cfg["database"]["user"])
-    password = os.getenv("DB_PASSWORD", cfg["database"]["password"])
-    url = f"postgresql+psycopg2://{user}:{password}@{host}:{port}/{name}"
-    return create_engine(url)
-
+import time
 
 def cleanse_customer_data(df: pd.DataFrame) -> pd.DataFrame:
-    """
-    Cleanse and enrich customer data from staging.
-    - Remove duplicates (keep first)
-    - Standardize names (title case)
-    - Validate email format (basic)
-    - Fill missing phone with 'Unknown'
-    """
-    df = df.drop_duplicates(subset=["customer_id"], keep="first").reset_index(drop=True)
-    df["first_name"] = df["first_name"].fillna("Unknown").str.title()
-    df["last_name"] = df["last_name"].fillna("Unknown").str.title()
-    df["email"] = df["email"].fillna("noemail@example.com")
-    df["phone"] = df["phone"].fillna("Unknown")
-    df["city"] = df["city"].fillna("Unknown")
-    df["state"] = df["state"].fillna("Unknown")
-    df["country"] = df["country"].fillna("Unknown")
-    df["age_group"] = df["age_group"].fillna("Unknown")
+    if df.empty: return df
+    for col in ['first_name', 'last_name', 'email', 'phone', 'city', 'state', 'country', 'age_group']:
+        if col in df.columns:
+            df[col] = df[col].astype(str).str.strip()
+    if 'email' in df.columns: df['email'] = df['email'].str.lower()
+    if 'first_name' in df.columns: df['first_name'] = df['first_name'].str.title()
+    if 'last_name' in df.columns: df['last_name'] = df['last_name'].str.title()
     return df
-
 
 def cleanse_product_data(df: pd.DataFrame) -> pd.DataFrame:
-    """
-    Cleanse and enrich product data from staging.
-    - Remove duplicates (keep first)
-    - Ensure price > 0 and cost >= 0
-    - Ensure cost < price
-    - Standardize category and brand names
-    """
-    df = df.drop_duplicates(subset=["product_id"], keep="first").reset_index(drop=True)
-    df["product_name"] = df["product_name"].fillna("Unknown Product")
-    df["category"] = df["category"].fillna("Uncategorized").str.title()
-    df["sub_category"] = df["sub_category"].fillna("General")
-    df["brand"] = df["brand"].fillna("Unknown Brand")
-
-    # Fix price/cost anomalies
-    df.loc[df["price"] <= 0, "price"] = 1.00
-    df.loc[df["cost"] < 0, "cost"] = 0.00
-    df.loc[df["cost"] >= df["price"], "cost"] = df["price"] * 0.5
-
-    df["stock_quantity"] = df["stock_quantity"].fillna(0).astype(int)
-    df["supplier_id"] = df["supplier_id"].fillna("UNKNOWN")
-
+    if df.empty: return df
+    for col in ['product_name', 'category', 'sub_category', 'brand']:
+        if col in df.columns: df[col] = df[col].astype(str).str.strip()
     return df
-
 
 def apply_business_rules(df: pd.DataFrame, rule_type: str) -> pd.DataFrame:
-    """
-    Apply domain-specific business rules.
-    rule_type: 'transaction_item' or 'transaction'
-    """
-    if rule_type == "transaction_item":
-        # line_total = quantity * unit_price * (1 - discount/100)
-        df["line_total"] = (
-            df["quantity"]
-            * df["unit_price"]
-            * (1 - df["discount_percentage"] / 100)
-        ).round(2)
-        # quantity must be > 0
-        df = df[df["quantity"] > 0].reset_index(drop=True)
-        # discount must be 0-100
-        df = df[(df["discount_percentage"] >= 0) & (df["discount_percentage"] <= 100)].reset_index(drop=True)
-
-    elif rule_type == "transaction":
-        # total_amount should match sum of line items per transaction (enforced at load)
-        df["total_amount"] = df["total_amount"].fillna(0).round(2)
-        df = df[df["total_amount"] >= 0].reset_index(drop=True)
-
+    if df.empty: return df
+    if rule_type == 'transactions':
+        if 'total_amount' in df.columns: 
+            df = df[df['total_amount'] > 0]
+    elif rule_type == 'transaction_items':
+        if 'quantity' in df.columns and 'unit_price' in df.columns:
+            df = df[(df['quantity'] > 0)]
+            df.loc[:, 'line_total'] = round(df['quantity'] * df['unit_price'] * (1 - df['discount_percentage']/100), 2)
     return df
 
-
-def load_to_production(
-    df: pd.DataFrame, table_name: str, connection, strategy: str = "append"
-) -> dict:
-    """
-    Load cleansed/transformed data to production schema.
-    strategy: 'append' (default) or 'replace'
-    """
-    schema, table = table_name.split(".")
-    if_exists = "replace" if strategy == "replace" else "append"
-
+def load_to_production(df: pd.DataFrame, table_name: str, connection, strategy: str) -> dict:
+    start_count = len(df)
+    if 'loaded_at' in df.columns: df = df.drop(columns=['loaded_at'])
+    if start_count == 0: return {"input": 0, "output": 0, "filtered": 0}
+        
     try:
-        df.to_sql(
-            table,
-            con=connection,
-            schema=schema,
-            if_exists=if_exists,
-            index=False,
-            method="multi",
-            chunksize=500,
-        )
-        return {
-            "table": table_name,
-            "rows_loaded": len(df),
-            "status": "success",
-        }
+        if strategy == 'truncate_insert':
+            connection.execute(text(f"TRUNCATE production.{table_name} CASCADE;"))
+            df.to_sql(table_name, con=connection, schema='production', if_exists='append', index=False, method='multi', chunksize=1000)
+            return {"input": start_count, "output": len(df), "filtered": 0}
+            
+        elif strategy == 'incremental':
+            id_col = f"{table_name[:-1]}_id" if table_name in ['transactions'] else "item_id"
+            existing = pd.read_sql(f"SELECT {id_col} FROM production.{table_name}", connection)
+            df_new = df[~df[id_col].isin(existing[id_col])]
+            if not df_new.empty:
+                df_new.to_sql(table_name, con=connection, schema='production', if_exists='append', index=False, method='multi', chunksize=1000)
+            return {"input": start_count, "output": len(df_new), "filtered": start_count - len(df_new)}
     except Exception as e:
-        return {
-            "table": table_name,
-            "rows_loaded": 0,
-            "status": "failed",
-            "error": str(e),
-        }
-
-
-def main():
-    """
-    ETL: Staging → Production
-    1. Read from staging schema
-    2. Cleanse and transform
-    3. Apply business rules
-    4. Load to production schema
-    5. Write summary report
-    """
-    engine = _get_engine()
-    results = []
-
-    with engine.begin() as conn:
-        # ===== CUSTOMERS =====
-        stg_customers = pd.read_sql(
-            "SELECT * FROM staging.customers", con=conn
-        )
-        customers_clean = cleanse_customer_data(stg_customers)
-        res = load_to_production(
-            customers_clean, "production.customers", conn, strategy="append"
-        )
-        results.append(res)
-
-        # ===== PRODUCTS =====
-        stg_products = pd.read_sql("SELECT * FROM staging.products", con=conn)
-        products_clean = cleanse_product_data(stg_products)
-        res = load_to_production(
-            products_clean, "production.products", conn, strategy="append"
-        )
-        results.append(res)
-
-        # ===== TRANSACTIONS =====
-        stg_transactions = pd.read_sql(
-            "SELECT * FROM staging.transactions", con=conn
-        )
-        transactions_clean = apply_business_rules(stg_transactions, "transaction")
-        res = load_to_production(
-            transactions_clean, "production.transactions", conn, strategy="append"
-        )
-        results.append(res)
-
-        # ===== TRANSACTION ITEMS =====
-        stg_items = pd.read_sql(
-            "SELECT * FROM staging.transaction_items", con=conn
-        )
-        items_clean = apply_business_rules(stg_items, "transaction_item")
-        res = load_to_production(
-            items_clean, "production.transaction_items", conn, strategy="append"
-        )
-        results.append(res)
-
-    summary = {
-        "transformation_timestamp": datetime.utcnow().isoformat(),
-        "tables_transformed": {
-            r["table"]: {
-                "rows_loaded": r["rows_loaded"],
-                "status": r["status"],
-                "error": r.get("error"),
-            }
-            for r in results
-        },
-        "transformation_status": "success" if all(r["status"] == "success" for r in results) else "partial",
-    }
-
-    Path("data/processed").mkdir(parents=True, exist_ok=True)
-    with open("data/processed/transformation_summary.json", "w") as f:
-        json.dump(summary, f, indent=2)
-
-    print("✓ Staging → Production ETL complete")
-    return summary
-
+        print(f"Error loading {table_name}: {e}")
+        return {"input": start_count, "output": 0, "filtered": start_count, "rejected_reasons": {"error": str(e)}}
 
 if __name__ == "__main__":
-    main()
+    from sqlalchemy import create_engine
+    from dotenv import load_dotenv
+    load_dotenv()
+    
+    DB_HOST = os.getenv("DB_HOST", "localhost")
+    DB_PORT = os.getenv("DB_PORT", "5432")
+    DB_NAME = os.getenv("DB_NAME", "ecommerce_db")
+    DB_USER = os.getenv("DB_USER", "admin")
+    DB_PASSWORD = os.getenv("DB_PASSWORD", "password")
+    
+    engine = create_engine(f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}")
+    os.makedirs("data/processed", exist_ok=True)
+    
+    summary = {
+        "transformation_timestamp": datetime.datetime.now().isoformat(),
+        "records_processed": {},
+        "transformations_applied": ["cleanse_data", "apply_business_rules", "truncate_insert_dims", "incremental_facts"]
+    }
+    
+    # Notice the order: Because we use TRUNCATE CASCADE for dimensions, we MUST load them first so facts can populate appropriately.
+    with engine.begin() as conn:
+        print("Transforming customers...")
+        df_c = pd.read_sql("SELECT * FROM staging.customers", conn)
+        df_c = cleanse_customer_data(df_c)
+        summary["records_processed"]["customers"] = load_to_production(df_c, "customers", conn, "truncate_insert")
+        
+        print("Transforming products...")
+        df_p = pd.read_sql("SELECT * FROM staging.products", conn)
+        df_p = cleanse_product_data(df_p)
+        summary["records_processed"]["products"] = load_to_production(df_p, "products", conn, "truncate_insert")
+        
+        print("Transforming transactions...")
+        df_t = pd.read_sql("SELECT * FROM staging.transactions", conn)
+        df_t = apply_business_rules(df_t, 'transactions')
+        summary["records_processed"]["transactions"] = load_to_production(df_t, "transactions", conn, "incremental")
+        
+        print("Transforming transaction_items...")
+        df_ti = pd.read_sql("SELECT * FROM staging.transaction_items", conn)
+        df_ti = apply_business_rules(df_ti, 'transaction_items')
+        summary["records_processed"]["transaction_items"] = load_to_production(df_ti, "transaction_items", conn, "incremental")
+        
+    with open("data/processed/transformation_summary.json", "w") as f:
+        json.dump(summary, f, indent=4)
